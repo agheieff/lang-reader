@@ -1,0 +1,26 @@
+schema_version = 1
+id = "de"
+tags = ["de"]
+description = "German lemma and compound conventions."
+generation_guidance = [
+  "Use infinitives as verb lemmas and nominative singular dictionary forms for nouns while keeping the observed inflection in run.text.",
+  "Preserve German noun capitalization in lemmas and keep lexicalized compounds as single learning units.",
+  "Use the complete dictionary lemma for separable-prefix verbs rather than creating a new lemma for each separated surface form.",
+  "Keep genuine homographs, meanings, and parts of speech separate; never merge only because their lowercase spelling matches.",
+]
+
+[pos_aliases]
+v = "verb"
+verb = "verb"
+n = "noun"
+nomen = "noun"
+substantiv = "noun"
+adj = "adjective"
+adjektiv = "adjective"
+
+[[lemma_conventions]]
+id = "verb-infinitive"
+pos = ["verb"]
+guidance = "German verb lemmas should normally use the dictionary infinitive, including the full prefix for separable verbs."
+severity = "guidance"
+

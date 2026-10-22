@@ -1,0 +1,24 @@
+# systemd user unit: synthesize a remote host's queued lesson audio whenever this machine is on.
+# Install: ln -s "$PWD/extras/tts-qwen/lang-tts-remote.service" ~/.config/systemd/user/ &&
+#          systemctl --user daemon-reload && systemctl --user enable --now lang-tts-remote
+# Set the two Environment lines below (see extras/tts-qwen/README.md).
+[Unit]
+Description=Lang: synthesize a remote host's lesson audio
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/lang-reader
+Environment=ARC_LANG_REMOTE_HOST=lang-host
+Environment=ARC_LANG_REMOTE_CLI=cd /srv/lang && .venv/bin/python -m server.cli
+ExecStart=%h/lang-reader/.venv/bin/python -m server.remote_tts_worker
+Restart=on-failure
+RestartSec=60
+Nice=10
+KillMode=mixed
+TimeoutStopSec=140
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,365 @@
+schema_version = 1
+id = "zh"
+tags = ["zh"]
+description = "Mandarin lexical-unit and productive quantity conventions for Han-script profiles."
+generated_surface_must_equal_lemma = true
+pronunciation_identity_ignores_whitespace = true
+generation_guidance = [
+  "Segment Han text into reusable dictionary words and grammatical particles, with adjacent runs and no inserted spaces.",
+  "Split productive number or ordinal plus classifier/measure expressions: 一个 -> 一 + 个, 十几个 -> 十几 + 个, 第二份 -> 第 + 二 + 份, 第一次 -> 第 + 一 + 次, 第二次 -> 第 + 二 + 次, 三天 -> 三 + 天.",
+  "Likewise split productive determiner plus classifier expressions: 这个 -> 这 + 个, 这次 -> 这 + 次, 这种 -> 这 + 种, and 每个人 -> 每 + 个 + 人.",
+  "Keep dictionary verb lemmas separate from following aspect particles: 笑了 -> 笑 + 了, 想着 -> 想 + 着, and 看过 -> 看 + 过.",
+  "Do not turn ordinary subject-predicate combinations or clauses into dictionary terms. For example, 因为地板震动 must be 因为 + 地板 + 震动, not 因为 + 地板震动.",
+  "Split the productive negation expressions 不是 -> 不 + 是 and 不要 -> 不 + 要. Do not generalize these exact rules to lexicalized words merely because they begin with 不.",
+  "Split productive question spans such as 有什么 -> 有 + 什么, and configured result or directional complements such as 看错 -> 看 + 错, 听到 -> 听 + 到, 关掉 -> 关 + 掉, and 拿出来 -> 拿 + 出来.",
+  "After splitting a productive expression, make every part its own term-bearing run whose text exactly equals that term's lemma. For example, never put the surface text 这种 on a term whose lemma is only 这.",
+  "Keep lexicalized entries intact, including 一起, 一些, 一直, 一边, 一样 meaning 'the same', 这样, and 那样. In contrast, split productive quantity forms such as 一样 meaning 'one kind/item' into 一 + 样.",
+  "Use separate term identities when the same written form has a different grammatical meaning, including attributive versus nominalizing 的, determiner versus standalone-pronoun 这/那, and numeral versus adverbial 一 meaning 'as soon as'.",
+  "Use these POS conventions: 第 is an ordinal particle, 把 is a preposition, 了/着/过 are particles, result and directional elements are complements, and measure words are classifiers.",
+  "Write dictionary pinyin with tone marks and one space between syllables. Use a run-level pronunciation override only for contextual tone sandhi: 一 is yì before tones 1-3 and yí before tone 4; 不 is bú before tone 4. Keep yī and bù on the dictionary term.",
+]
+
+[pos_aliases]
+"measure word" = "classifier"
+counter = "classifier"
+"classifier phrase" = "quantifier"
+"measure phrase" = "quantifier"
+"quantity phrase" = "quantifier"
+quantity_phrase = "quantifier"
+numeral_phrase = "numeral phrase"
+"aspect marker" = "particle"
+"aspect particle" = "particle"
+"result complement" = "complement"
+"directional complement" = "complement"
+
+[[pronunciation_classes]]
+id = "tone_1"
+first_unit_regex = '^[^ āēīōūǖáéíóúǘḿńǎěǐǒǔǚňàèìòùǜǹ]*[āēīōūǖ]'
+
+[[pronunciation_classes]]
+id = "tone_2"
+first_unit_regex = '^[^ āēīōūǖáéíóúǘḿńǎěǐǒǔǚňàèìòùǜǹ]*[áéíóúǘḿń]'
+
+[[pronunciation_classes]]
+id = "tone_3"
+first_unit_regex = '^[^ āēīōūǖáéíóúǘḿńǎěǐǒǔǚňàèìòùǜǹ]*[ǎěǐǒǔǚň]'
+
+[[pronunciation_classes]]
+id = "tone_4"
+first_unit_regex = '^[^ āēīōūǖáéíóúǘḿńǎěǐǒǔǚňàèìòùǜǹ]*[àèìòùǜǹ]'
+
+[[contextual_pronunciation_rules]]
+id = "mandarin-yi-tone-sandhi"
+lemma = "一"
+canonical_pronunciations = ["yī"]
+following_pronunciations = { tone_1 = "yì", tone_2 = "yì", tone_3 = "yì", tone_4 = "yí" }
+
+[[contextual_pronunciation_rules]]
+id = "mandarin-bu-tone-sandhi"
+lemma = "不"
+canonical_pronunciations = ["bù"]
+following_pronunciations = { tone_1 = "bù", tone_2 = "bù", tone_3 = "bù", tone_4 = "bú" }
+
+[[learning_overrides]]
+lemma = "一块"
+pos = ["adverb"]
+decision = "include"
+reason = "lexicalized adverb meaning together"
+
+[[learning_exceptions]]
+id = "lexicalized-demonstrative-manner"
+lemma_regex = '^(?:这样|這樣|那样|那樣)$'
+pos = ["pronoun", "adverb"]
+reason = "lexicalized Chinese demonstrative manner word"
+examples = ["这样", "這樣", "那样", "那樣"]
+
+[[learning_exceptions]]
+id = "lexicalized-same"
+lemma_regex = '^(?:一样|一樣)$'
+pos = ["adjective", "adverb"]
+reason = "lexicalized Chinese word meaning the same or alike"
+examples = ["一样", "一樣"]
+
+[[learning_exceptions]]
+id = "lexicalized-particle-ending"
+lemma_regex = '^(?:为了|為了|爲了|除了|罢了|罷了)$'
+reason = "lexicalized Chinese entry ending in a particle-like character"
+examples = ["为了", "除了", "罢了"]
+
+[[decomposition_patterns]]
+id = "negation-copula-shi"
+lemma_regex = '^(?P<negator>不)(?P<copula>是)$'
+pos = ["auxiliary", "verb", "verb phrase"]
+reason = "productive Chinese negation-plus-copula expression"
+examples = ["不是"]
+recompute_contextual_pronunciation = true
+
+[[decomposition_patterns.components]]
+group = "negator"
+role = "negator"
+pos = ["adverb", "particle"]
+
+[[decomposition_patterns.components]]
+group = "copula"
+role = "copula"
+pos = ["auxiliary", "verb"]
+
+[[decomposition_patterns]]
+id = "negation-modal-yao"
+lemma_regex = '^(?P<negator>不)(?P<modal>要)$'
+pos = ["auxiliary", "modal", "verb", "verb phrase"]
+reason = "productive Chinese negation-plus-modal expression"
+examples = ["不要"]
+recompute_contextual_pronunciation = true
+
+[[decomposition_patterns.components]]
+group = "negator"
+role = "negator"
+pos = ["adverb", "particle"]
+
+[[decomposition_patterns.components]]
+group = "modal"
+role = "modal"
+pos = ["auxiliary", "modal", "verb"]
+
+[[decomposition_patterns]]
+id = "verb-aspect-suffix"
+lemma_regex = '^(?P<base>.+?)(?P<marker>了|着|著|过|過)$'
+pos = ["verb", "verb phrase"]
+reason = "productive Chinese verb-plus-aspect expression"
+examples = ["笑了", "有了", "听了", "想着", "看着", "看过"]
+
+[[decomposition_patterns.components]]
+group = "base"
+role = "lexical-base"
+pos = ["verb"]
+
+[[decomposition_patterns.components]]
+group = "marker"
+role = "aspect-marker"
+pos = ["particle"]
+
+[[decomposition_patterns]]
+id = "existential-question"
+lemma_regex = '^(?P<verb>有)(?P<pronoun>什么|甚麼|什麼)$'
+reason = "productive Chinese verb-plus-interrogative expression"
+examples = ["有什么", "有什麼"]
+
+[[decomposition_patterns.components]]
+group = "verb"
+role = "lexical-base"
+pos = ["verb"]
+
+[[decomposition_patterns.components]]
+group = "pronoun"
+role = "interrogative-pronoun"
+pos = ["pronoun"]
+
+[[decomposition_patterns]]
+id = "floor-vibration-clause"
+lemma_regex = '^(?P<subject>地板)(?P<predicate>震动|震動)$'
+pos = ["noun", "noun phrase", "phrase", "clause"]
+reason = "ordinary Chinese subject-predicate combination, not a dictionary term"
+examples = ["地板震动", "地板震動"]
+
+[[decomposition_patterns.components]]
+group = "subject"
+role = "subject"
+pos = ["noun"]
+
+[[decomposition_patterns.components]]
+group = "predicate"
+role = "predicate"
+pos = ["verb"]
+
+[[decomposition_patterns]]
+id = "ordinal-classifier"
+lemma_regex = '^(?P<ordinal>第)(?P<number>[零〇一二两兩三四五六七八九十百千万萬亿億兆几幾0-9０-９]+)(?P<classifier>个|個|本|位|名|家|户|戶|所|间|間|层|層|张|張|片|枚|块|塊|段|条|條|道|只|隻|头|頭|匹|艘|辆|輛|台|部|件|份|套|双|雙|对|對|把|支|根|瓶|杯|碗|盘|盤|盆|盒|箱|包|袋|封|册|冊|卷|章|篇|首|门|門|节|節|课|課|题|題|项|項|种|種|样|樣|回|次|遍|趟|场|場|期|届|屆|级|級)$'
+reason = "productive Chinese ordinal-plus-classifier expression"
+examples = ["第二份", "第一次", "第二次"]
+
+[[decomposition_patterns.components]]
+group = "ordinal"
+role = "ordinal-marker"
+pos = ["prefix", "particle"]
+
+[[decomposition_patterns.components]]
+group = "number"
+role = "number"
+pos = ["numeral"]
+
+[[decomposition_patterns.components]]
+group = "classifier"
+role = "classifier"
+pos = ["classifier", "noun"]
+
+[[decomposition_patterns]]
+id = "number-measure"
+lemma_regex = '^(?P<number>[零〇一二两兩三四五六七八九十百千万萬亿億兆几幾0-9０-９]+)(?P<measure>秒(?:钟|鐘)?|分(?:钟|鐘)?|小时|小時|天|日|夜|周|週|月|季|年|岁|歲|层|層|楼|樓|步|米|里|斤|克|吨|噸|升|倍)$'
+reason = "productive Chinese number-plus-measure expression"
+examples = ["四十五分", "三天", "两周", "十分钟", "一楼"]
+
+[[decomposition_patterns.components]]
+group = "number"
+role = "number"
+pos = ["numeral"]
+
+[[decomposition_patterns.components]]
+group = "measure"
+role = "measure"
+pos = ["classifier", "noun", "measure"]
+
+[[decomposition_patterns]]
+id = "number-classifier"
+lemma_regex = '^(?P<number>[零〇一二两兩三四五六七八九十百千万萬亿億兆几幾0-9０-９]+)(?P<classifier>个|個|本|位|名|家|户|戶|所|间|間|层|層|张|張|片|枚|块|塊|段|条|條|道|只|隻|头|頭|匹|艘|辆|輛|台|部|件|份|套|双|雙|对|對|把|支|根|瓶|杯|碗|盘|盤|盆|盒|箱|包|袋|封|册|冊|卷|章|篇|首|门|門|节|節|课|課|题|題|项|項|种|種|样|樣|回|次|遍|趟|场|場|期|届|屆|级|級)$'
+reason = "productive Chinese number-plus-classifier expression"
+examples = ["一个", "十几个", "2個"]
+
+[[decomposition_patterns.components]]
+group = "number"
+role = "number"
+pos = ["numeral"]
+
+[[decomposition_patterns.components]]
+group = "classifier"
+role = "classifier"
+pos = ["classifier", "noun"]
+
+[[decomposition_patterns]]
+id = "determiner-classifier-person"
+lemma_regex = '^(?P<determiner>这|這|那|哪|每)(?P<classifier>个|個)(?P<noun>人)$'
+reason = "productive Chinese determiner-plus-classifier expression"
+examples = ["每个人", "這個人"]
+
+[[decomposition_patterns.components]]
+group = "determiner"
+role = "determiner"
+pos = ["determiner", "pronoun"]
+
+[[decomposition_patterns.components]]
+group = "classifier"
+role = "classifier"
+pos = ["classifier"]
+
+[[decomposition_patterns.components]]
+group = "noun"
+role = "lexical-noun"
+pos = ["noun"]
+
+[[decomposition_patterns]]
+id = "compound-determiner-classifier"
+lemma_regex = '^(?P<determiner>另|每|某|各)(?P<number>一)(?P<classifier>个|個)$'
+reason = "productive Chinese determiner-plus-number-plus-classifier expression"
+examples = ["另一个", "每一个"]
+
+[[decomposition_patterns.components]]
+group = "determiner"
+role = "determiner"
+pos = ["determiner", "pronoun"]
+
+[[decomposition_patterns.components]]
+group = "number"
+role = "number"
+pos = ["numeral"]
+
+[[decomposition_patterns.components]]
+group = "classifier"
+role = "classifier"
+pos = ["classifier"]
+
+[[decomposition_patterns]]
+id = "determiner-classifier"
+lemma_regex = '^(?P<determiner>这|這|那|哪|每|某|各)(?P<classifier>个|個|本|位|名|家|户|戶|所|间|間|层|層|张|張|片|枚|块|塊|段|条|條|道|只|隻|头|頭|匹|艘|辆|輛|台|部|件|份|套|双|雙|对|對|把|支|根|瓶|杯|碗|盘|盤|盆|盒|箱|包|袋|封|册|冊|卷|章|篇|首|门|門|节|節|课|課|题|題|项|項|种|種|样|樣|回|次|遍|趟|场|場|期|届|屆|级|級)$'
+reason = "productive Chinese determiner-plus-classifier expression"
+examples = ["这个", "这次", "这种", "每个"]
+
+[[decomposition_patterns.components]]
+group = "determiner"
+role = "determiner"
+pos = ["determiner", "pronoun"]
+
+[[decomposition_patterns.components]]
+group = "classifier"
+role = "classifier"
+pos = ["classifier", "noun"]
+
+[[decomposition_patterns]]
+id = "result-complement"
+lemma_regex = '^(?P<base>.+?)(?P<complement>错|錯|掉)$'
+pos = ["verb", "verb phrase"]
+reason = "productive Chinese verb-plus-result-complement expression"
+examples = ["看错", "听错", "关掉"]
+
+[[decomposition_patterns.components]]
+group = "base"
+role = "lexical-base"
+pos = ["verb"]
+
+[[decomposition_patterns.components]]
+group = "complement"
+role = "result-complement"
+pos = ["complement", "verb", "adjective"]
+
+[[decomposition_patterns]]
+id = "attainment-complement"
+lemma_regex = '^(?P<base>看|听|聽|闻|聞|找|查|读|讀|学|學|接|收|买|買|借|遇|等|拿|吃|喝|碰|摸)(?P<complement>到)$'
+pos = ["verb", "verb phrase"]
+reason = "productive Chinese verb-plus-attainment-complement expression"
+examples = ["听到", "看到", "找到"]
+
+[[decomposition_patterns.components]]
+group = "base"
+role = "lexical-base"
+pos = ["verb"]
+
+[[decomposition_patterns.components]]
+group = "complement"
+role = "result-complement"
+pos = ["complement", "verb"]
+
+[[decomposition_patterns]]
+id = "directional-complement"
+lemma_regex = '^(?P<base>.+?)(?P<complement>出来|出來|进去|進去|进来|進來|起来|起來|下去|下来|下來|上去|上来|上來|回去|回来|回來)$'
+pos = ["verb", "verb phrase"]
+reason = "productive Chinese verb-plus-directional-complement expression"
+examples = ["拿出来", "走进去", "想起来"]
+
+[[decomposition_patterns.components]]
+group = "base"
+role = "lexical-base"
+pos = ["verb"]
+
+[[decomposition_patterns.components]]
+group = "complement"
+role = "directional-complement"
+pos = ["complement", "verb"]
+
+[[non_learning_patterns]]
+id = "number-common-classifier"
+lemma_regex = '^(?:第)?[零〇一二两兩三四五六七八九十百千万萬亿億兆几幾0-9０-９]+(?:个|個|本|位|名|家|户|戶|所|间|間|层|層|张|張|片|枚|块|塊|段|条|條|道|只|隻|头|頭|匹|艘|辆|輛|台|部|件|份|套|双|雙|对|對|把|支|根|瓶|杯|碗|盘|盤|盆|盒|箱|包|袋|封|册|冊|卷|章|篇|首|门|門|节|節|课|課|题|題|项|項|种|種|样|樣|回|次|遍|趟|场|場|期|届|屆|级|級)$'
+reason = "productive Chinese number-plus-classifier expression"
+examples = ["一个", "十几个", "第二份", "第一次", "第二次", "2個"]
+
+[[non_learning_patterns]]
+id = "number-classifier"
+lemma_regex = '^(?:第)?[零〇一二两兩三四五六七八九十百千万萬亿億兆几幾0-9０-９]+.+$'
+pos = ["quantifier", "numeral phrase", "classifier phrase", "measure phrase"]
+reason = "productive Chinese number-plus-classifier expression"
+examples = ["一个", "两个", "几张", "第二份", "第一次", "第二次", "2個"]
+
+[[non_learning_patterns]]
+id = "number-measure-noun"
+lemma_regex = '^(?:第)?[零〇一二两兩三四五六七八九十百千万萬亿億兆几幾0-9０-９]+(?:秒(?:钟|鐘)?|分(?:钟|鐘)?|小时|小時|天|日|夜|周|週|月|季|年|岁|歲|层|層|楼|樓|步|米|里|斤|克|吨|噸|升|倍)$'
+reason = "productive Chinese number-plus-measure expression"
+examples = ["四十五分", "三天", "两周", "十分钟", "一楼"]
+
+[[non_learning_patterns]]
+id = "determiner-classifier"
+lemma_regex = '^(?:(?:这|這|那|哪|每|某|各)(?:个|個|本|位|名|家|户|戶|所|间|間|层|層|张|張|片|枚|块|塊|段|条|條|道|只|隻|头|頭|匹|艘|辆|輛|台|部|件|份|套|双|雙|对|對|把|支|根|瓶|杯|碗|盘|盤|盆|盒|箱|包|袋|封|册|冊|卷|章|篇|首|门|門|节|節|课|課|题|題|项|項|种|種|样|樣|回|次|遍|趟|场|場|期|届|屆|级|級)(?:人)?|(?:每一|另一个|另一個|某个|某個|各个|各個))$'
+pos = ["determiner", "pronoun", "noun", "quantifier"]
+reason = "productive Chinese determiner-plus-classifier expression"
+examples = ["这个", "每个", "每个人", "这次", "这种", "另一个"]
+
+[[lemma_conventions]]
+id = "dictionary-headword"
+guidance = "Use the dictionary headword, not an inflected phrase or a span containing aspect particles, complements, or prepositions."

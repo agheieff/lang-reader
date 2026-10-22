@@ -1,0 +1,60 @@
+schema_version = 1
+id = "zh"
+tags = ["zh"]
+description = "Core Mandarin constructions shared by Simplified and Traditional profiles."
+
+[[constructions]]
+key = "zh:shi-copula"
+label = "是 copular sentence"
+description = "是 links a topic or subject to a noun phrase that identifies or classifies it; ordinary adjectival predicates usually do not use 是."
+category = "predicates"
+difficulty = 0.10
+generation_hint = "Use 是 between two clear noun phrases rather than before a plain adjective."
+
+[[constructions]]
+key = "zh:you-existence-possession"
+label = "有 for possession or existence"
+description = "有 expresses possession or introduces the existence of something in a place or situation."
+category = "predicates"
+difficulty = 0.14
+generation_hint = "Use a short possessive or locative existential sentence with an explicit possessor or location."
+
+[[constructions]]
+key = "zh:measure-word-phrase"
+label = "Number–classifier phrase"
+description = "A number or determiner combines with an appropriate classifier before a noun."
+category = "noun phrases"
+difficulty = 0.20
+generation_hint = "Segment the number, classifier, and noun as reusable runs and annotate their complete phrase."
+
+[[constructions]]
+key = "zh:de-modifier"
+label = "的 modifier"
+description = "A modifier precedes 的 and a noun, covering possession and many descriptive or relative-clause relationships."
+category = "noun phrases"
+difficulty = 0.28
+generation_hint = "Keep the modifier, 的, and modified noun close together and include the whole phrase in the run range."
+
+[[constructions]]
+key = "zh:le-perfective"
+label = "Perfective 了"
+description = "The aspect particle 了 presents an event as bounded or completed in the discourse, rather than simply marking past time."
+category = "aspect"
+difficulty = 0.36
+generation_hint = "Use a clearly bounded event and distinguish verbal 了 from sentence-final change-of-state 了."
+
+[[constructions]]
+key = "zh:ba-construction"
+label = "把 construction"
+description = "把 places a definite affected object before a verb phrase that describes what happens to it."
+category = "word order"
+difficulty = 0.50
+generation_hint = "Use a definite object and a verb phrase with a clear result, direction, location, or other disposal outcome."
+
+[[constructions]]
+key = "zh:bei-passive"
+label = "被 passive"
+description = "被 introduces or implies an agent in a passive clause while the affected participant appears before the verb phrase."
+category = "voice"
+difficulty = 0.58
+generation_hint = "Use a context where the affected participant and passive event are concrete and unambiguous."

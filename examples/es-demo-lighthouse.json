@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "key": "es-demo-old-lighthouse",
+  "title": "La luz del faro",
+  "learning_language": "es-ES",
+  "translation_language": "en",
+  "topic": "coastal mystery",
+  "level": "A2",
+  "difficulty": 0.3,
+  "target_term_keys": ["es-ES:descubrir:VERB", "es-ES:espera:NOUN"],
+  "blocks": [
+    {
+      "key": "cliff",
+      "sentences": [
+        {
+          "key": "path",
+          "translation": "Leo follows a narrow path to the old lighthouse on the cliff.",
+          "runs": [
+            {"text": "Leo "},
+            {
+              "text": "sigue",
+              "term": {
+                "key": "es-ES:seguir:VERB",
+                "lemma": "seguir",
+                "pos": "VERB",
+                "gloss": "follows"
+              }
+            },
+            {"text": " un "},
+            {
+              "text": "sendero",
+              "term": {
+                "key": "es-ES:sendero:NOUN",
+                "lemma": "sendero",
+                "pos": "NOUN",
+                "gloss": "path; trail"
+              }
+            },
+            {"text": " "},
+            {
+              "text": "estrecho",
+              "term": {
+                "key": "es-ES:estrecho:ADJ",
+                "lemma": "estrecho",
+                "pos": "ADJ",
+                "gloss": "narrow"
+              }
+            },
+            {"text": " hasta el viejo "},
+            {
+              "text": "faro",
+              "term": {
+                "key": "es-ES:faro:NOUN",
+                "lemma": "faro",
+                "pos": "NOUN",
+                "gloss": "lighthouse"
+              }
+            },
+            {"text": " del acantilado."}
+          ]
+        },
+        {
+          "key": "storm",
+          "translation": "The building has been empty for years, but its light appeared during last night's storm.",
+          "runs": [
+            {"text": "El edificio está "},
+            {
+              "text": "vacío",
+              "term": {
+                "key": "es-ES:vacío:ADJ",
+                "lemma": "vacío",
+                "pos": "ADJ",
+                "gloss": "empty"
+              }
+            },
+            {"text": " desde hace años, pero su luz "},
+            {
+              "text": "apareció",
+              "term": {
+                "key": "es-ES:aparecer:VERB",
+                "lemma": "aparecer",
+                "pos": "VERB",
+                "gloss": "appeared"
+              }
+            },
+            {"text": " durante la "},
+            {
+              "text": "tormenta",
+              "term": {
+                "key": "es-ES:tormenta:NOUN",
+                "lemma": "tormenta",
+                "pos": "NOUN",
+                "gloss": "storm"
+              }
+            },
+            {"text": " de anoche."}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "inside",
+      "sentences": [
+        {
+          "key": "door",
+          "translation": "Inside, Leo discovers a warm lantern beside an open notebook.",
+          "runs": [
+            {"text": "Dentro, Leo "},
+            {
+              "text": "descubre",
+              "term": {
+                "key": "es-ES:descubrir:VERB",
+                "lemma": "descubrir",
+                "pos": "VERB",
+                "gloss": "discovers; finds"
+              }
+            },
+            {"text": " una "},
+            {
+              "text": "linterna",
+              "term": {
+                "key": "es-ES:linterna:NOUN",
+                "lemma": "linterna",
+                "pos": "NOUN",
+                "gloss": "lantern; flashlight"
+              }
+            },
+            {"text": " "},
+            {
+              "text": "caliente",
+              "term": {
+                "key": "es-ES:caliente:ADJ",
+                "lemma": "caliente",
+                "pos": "ADJ",
+                "gloss": "warm; hot"
+              }
+            },
+            {"text": " junto a un "},
+            {
+              "text": "cuaderno",
+              "term": {
+                "key": "es-ES:cuaderno:NOUN",
+                "lemma": "cuaderno",
+                "pos": "NOUN",
+                "gloss": "notebook"
+              }
+            },
+            {"text": " abierto."}
+          ]
+        },
+        {
+          "key": "message",
+          "translation": "The last line says, ‘Thank you for the wait. Look toward the sea.’",
+          "runs": [
+            {"text": "La última línea dice: «Gracias por la "},
+            {
+              "text": "espera",
+              "term": {
+                "key": "es-ES:espera:NOUN",
+                "lemma": "espera",
+                "pos": "NOUN",
+                "gloss": "wait; waiting"
+              }
+            },
+            {"text": ". "},
+            {
+              "text": "Mira",
+              "term": {
+                "key": "es-ES:mirar:VERB",
+                "lemma": "mirar",
+                "pos": "VERB",
+                "gloss": "look"
+              }
+            },
+            {"text": " hacia el mar»."}
+          ]
+        },
+        {
+          "key": "boat",
+          "translation": "Far away, a small boat answers with three flashes of light.",
+          "runs": [
+            {"text": "A lo lejos, una pequeña "},
+            {
+              "text": "barca",
+              "term": {
+                "key": "es-ES:barca:NOUN",
+                "lemma": "barca",
+                "pos": "NOUN",
+                "gloss": "small boat"
+              }
+            },
+            {"text": " responde con tres "},
+            {
+              "text": "destellos",
+              "term": {
+                "key": "es-ES:destello:NOUN",
+                "lemma": "destello",
+                "pos": "NOUN",
+                "gloss": "flashes; glints"
+              }
+            },
+            {"text": " de luz."}
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "purpose": "interactive test lesson",
+    "series": "small mysteries"
+  }
+}

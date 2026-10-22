@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "key": "es-demo-morning-market",
+  "title": "Una mañana en el mercado",
+  "learning_language": "es-ES",
+  "translation_language": "en",
+  "topic": "food and daily life",
+  "level": "A2",
+  "difficulty": 0.25,
+  "target_term_keys": ["es-ES:elegir:VERB", "es-ES:olor:NOUN"],
+  "blocks": [
+    {
+      "key": "arrival",
+      "sentences": [
+        {
+          "key": "market-arrival",
+          "translation": "Clara arrives at the market early, while the streets are still quiet.",
+          "runs": [
+            {"text": "Clara "},
+            {
+              "text": "llega",
+              "term": {
+                "key": "es-ES:llegar:VERB",
+                "lemma": "llegar",
+                "pos": "VERB",
+                "gloss": "arrives; reaches"
+              }
+            },
+            {"text": " al "},
+            {
+              "text": "mercado",
+              "term": {
+                "key": "es-ES:mercado:NOUN",
+                "lemma": "mercado",
+                "pos": "NOUN",
+                "gloss": "market"
+              }
+            },
+            {"text": " "},
+            {
+              "text": "temprano",
+              "term": {
+                "key": "es-ES:temprano:ADV",
+                "lemma": "temprano",
+                "pos": "ADV",
+                "gloss": "early"
+              }
+            },
+            {"text": ", cuando las calles todavía están "},
+            {
+              "text": "tranquilas",
+              "term": {
+                "key": "es-ES:tranquilo:ADJ",
+                "lemma": "tranquilo",
+                "pos": "ADJ",
+                "gloss": "quiet; calm"
+              }
+            },
+            {"text": "."}
+          ]
+        },
+        {
+          "key": "orange",
+          "translation": "A seller cuts an orange, and its sweet smell fills the air.",
+          "runs": [
+            {"text": "Un "},
+            {
+              "text": "vendedor",
+              "term": {
+                "key": "es-ES:vendedor:NOUN",
+                "lemma": "vendedor",
+                "pos": "NOUN",
+                "gloss": "seller; vendor"
+              }
+            },
+            {"text": " "},
+            {
+              "text": "corta",
+              "term": {
+                "key": "es-ES:cortar:VERB",
+                "lemma": "cortar",
+                "pos": "VERB",
+                "gloss": "cuts"
+              }
+            },
+            {"text": " una "},
+            {
+              "text": "naranja",
+              "term": {
+                "key": "es-ES:naranja:NOUN",
+                "lemma": "naranja",
+                "pos": "NOUN",
+                "gloss": "orange"
+              }
+            },
+            {"text": ", y su "},
+            {
+              "text": "olor",
+              "term": {
+                "key": "es-ES:olor:NOUN",
+                "lemma": "olor",
+                "pos": "NOUN",
+                "gloss": "smell; scent"
+              }
+            },
+            {"text": " "},
+            {
+              "text": "dulce",
+              "term": {
+                "key": "es-ES:dulce:ADJ",
+                "lemma": "dulce",
+                "pos": "ADJ",
+                "gloss": "sweet"
+              }
+            },
+            {"text": " llena el aire."}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "choice",
+      "sentences": [
+        {
+          "key": "tomatoes",
+          "translation": "Clara wants to choose tomatoes for a soup, but she compares them carefully.",
+          "runs": [
+            {"text": "Clara quiere "},
+            {
+              "text": "elegir",
+              "term": {
+                "key": "es-ES:elegir:VERB",
+                "lemma": "elegir",
+                "pos": "VERB",
+                "gloss": "to choose"
+              }
+            },
+            {"text": " "},
+            {
+              "text": "tomates",
+              "term": {
+                "key": "es-ES:tomate:NOUN",
+                "lemma": "tomate",
+                "pos": "NOUN",
+                "gloss": "tomatoes"
+              }
+            },
+            {"text": " para una "},
+            {
+              "text": "sopa",
+              "term": {
+                "key": "es-ES:sopa:NOUN",
+                "lemma": "sopa",
+                "pos": "NOUN",
+                "gloss": "soup"
+              }
+            },
+            {"text": ", pero los "},
+            {
+              "text": "compara",
+              "term": {
+                "key": "es-ES:comparar:VERB",
+                "lemma": "comparar",
+                "pos": "VERB",
+                "gloss": "compares"
+              }
+            },
+            {"text": " con cuidado."}
+          ]
+        },
+        {
+          "key": "gift",
+          "translation": "The seller smiles and gives her a small bunch of parsley as a gift.",
+          "runs": [
+            {"text": "El vendedor "},
+            {
+              "text": "sonríe",
+              "term": {
+                "key": "es-ES:sonreír:VERB",
+                "lemma": "sonreír",
+                "pos": "VERB",
+                "gloss": "smiles"
+              }
+            },
+            {"text": " y le da un pequeño "},
+            {
+              "text": "ramo",
+              "term": {
+                "key": "es-ES:ramo:NOUN",
+                "lemma": "ramo",
+                "pos": "NOUN",
+                "gloss": "bunch; bouquet"
+              }
+            },
+            {"text": " de "},
+            {
+              "text": "perejil",
+              "term": {
+                "key": "es-ES:perejil:NOUN",
+                "lemma": "perejil",
+                "pos": "NOUN",
+                "gloss": "parsley"
+              }
+            },
+            {"text": " como "},
+            {
+              "text": "regalo",
+              "term": {
+                "key": "es-ES:regalo:NOUN",
+                "lemma": "regalo",
+                "pos": "NOUN",
+                "gloss": "gift"
+              }
+            },
+            {"text": "."}
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "purpose": "interactive test lesson",
+    "series": "small encounters"
+  }
+}

@@ -1,0 +1,44 @@
+schema_version = 1
+id = "es"
+tags = ["es"]
+description = "Core Spanish constructions shared by regional profiles."
+
+[[constructions]]
+key = "es:present-indicative"
+label = "Present indicative"
+description = "A finite present-tense verb used for current, habitual, or general situations."
+category = "verb tense"
+difficulty = 0.10
+generation_hint = "Prefer an ordinary present-tense clause with an explicit, recoverable subject."
+
+[[constructions]]
+key = "es:ser-estar"
+label = "Ser and estar"
+description = "The choice between the two Spanish copulas according to identity, classification, state, or location."
+category = "copulas"
+difficulty = 0.22
+generation_hint = "Use one copula naturally; the contextual note should explain why it fits this predicate."
+
+[[constructions]]
+key = "es:direct-object-clitic"
+label = "Direct-object clitic"
+description = "An unstressed object pronoun such as lo, la, los, or las placed with a finite or non-finite verb."
+category = "pronouns"
+difficulty = 0.30
+generation_hint = "Give the clitic a clear antecedent in the same or immediately preceding sentence."
+
+[[constructions]]
+key = "es:preterite-imperfect"
+label = "Preterite and imperfect"
+description = "Past viewpoint expressed as a bounded event with the preterite or background, habitual, or ongoing context with the imperfect."
+category = "verb tense"
+difficulty = 0.44
+generation_hint = "Use the selected past form in a context that makes its aspectual viewpoint unambiguous."
+
+[[constructions]]
+key = "es:subjunctive-trigger"
+label = "Present subjunctive trigger"
+description = "A subordinate clause whose verb takes the subjunctive after a trigger such as desire, doubt, evaluation, or purpose."
+category = "verb mood"
+difficulty = 0.60
+generation_hint = "Keep the governing trigger and the subjunctive clause close enough to annotate as one run range."

@@ -1,0 +1,12 @@
+schema_version = 1
+id = "fr"
+tags = ["fr"]
+description = "Core French constructions."
+
+[[constructions]]
+key = "fr:passe-compose"
+label = "Passé composé"
+description = "A past tense built from avoir or être in the present plus a past participle."
+category = "tense"
+difficulty = 0.25
+generation_hint = "Use a short sentence with avoir and a regular past participle."

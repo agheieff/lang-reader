@@ -1,0 +1,1159 @@
+{
+  "schema_version": 1,
+  "key": "zh-grammar-demo-repair-corner",
+  "title": "修理角的星期六",
+  "title_sentence": {
+    "key": "repair-title",
+    "runs": [
+      {
+        "text": "修理角",
+        "term": {
+          "key": "grammar-demo-xiulijiao-repair-corner",
+          "lemma": "修理角",
+          "pos": "noun",
+          "gloss": "repair corner",
+          "pronunciation": "xiū lǐ jiǎo",
+          "frequency_rank": 8500
+        }
+      },
+      {
+        "text": "的",
+        "term": {
+          "key": "grammar-demo-de-structural",
+          "lemma": "的",
+          "pos": "particle",
+          "gloss": "structural particle linking a modifier to a noun",
+          "pronunciation": "de",
+          "frequency_rank": 1
+        }
+      },
+      {
+        "text": "星期六",
+        "term": {
+          "key": "grammar-demo-xingqiliu-saturday",
+          "lemma": "星期六",
+          "pos": "noun",
+          "gloss": "Saturday",
+          "pronunciation": "xīng qī liù",
+          "frequency_rank": 950
+        }
+      }
+    ],
+    "translation": "Saturday at the repair corner",
+    "grammar": [
+      {
+        "key": "repair-title:grammar:1",
+        "construction_key": "zh:de-modifier",
+        "run_start": 0,
+        "run_end": 3,
+        "note": "修理角 identifies which Saturday the title is about."
+      }
+    ]
+  },
+  "learning_language": "zh-Hans",
+  "translation_language": "en",
+  "topic": "社区修理活动",
+  "level": "A2",
+  "difficulty": 0.2,
+  "blocks": [
+    {
+      "key": "repair-opening",
+      "sentences": [
+        {
+          "key": "repair-1",
+          "runs": [
+            {
+              "text": "社区中心",
+              "term": {
+                "key": "grammar-demo-shequzhongxin-community-center",
+                "lemma": "社区中心",
+                "pos": "noun",
+                "gloss": "community center",
+                "pronunciation": "shè qū zhōng xīn",
+                "frequency_rank": 4100
+              }
+            },
+            {
+              "text": "有",
+              "term": {
+                "key": "grammar-demo-you-have-exist",
+                "lemma": "有",
+                "pos": "verb",
+                "gloss": "to have; there is",
+                "pronunciation": "yǒu",
+                "frequency_rank": 8
+              }
+            },
+            {
+              "text": "一",
+              "term": {
+                "key": "grammar-demo-yi-one",
+                "lemma": "一",
+                "pos": "numeral",
+                "gloss": "one",
+                "pronunciation": "yī",
+                "frequency_rank": 2
+              },
+              "pronunciation": "yí"
+            },
+            {
+              "text": "个",
+              "term": {
+                "key": "ge-general-classifier",
+                "lemma": "个",
+                "pos": "classifier",
+                "gloss": "general classifier",
+                "pronunciation": "gè",
+                "frequency_rank": 12
+              }
+            },
+            {
+              "text": "新",
+              "term": {
+                "key": "grammar-demo-xin-new",
+                "lemma": "新",
+                "pos": "adjective",
+                "gloss": "new",
+                "pronunciation": "xīn",
+                "frequency_rank": 180
+              }
+            },
+            {
+              "text": "的",
+              "term": {
+                "key": "grammar-demo-de-structural",
+                "lemma": "的",
+                "pos": "particle",
+                "gloss": "structural particle linking a modifier to a noun",
+                "pronunciation": "de",
+                "frequency_rank": 1
+              }
+            },
+            {
+              "text": "修理角",
+              "term": {
+                "key": "grammar-demo-xiulijiao-repair-corner",
+                "lemma": "修理角",
+                "pos": "noun",
+                "gloss": "repair corner",
+                "pronunciation": "xiū lǐ jiǎo",
+                "frequency_rank": 8500
+              }
+            },
+            { "text": "。" }
+          ],
+          "translation": "The community center has a new repair corner.",
+          "grammar": [
+            {
+              "key": "repair-1:grammar:1",
+              "construction_key": "zh:you-existence-possession",
+              "run_start": 1,
+              "run_end": 7,
+              "note": "有 introduces the existence of the repair corner at the community center."
+            },
+            {
+              "key": "repair-1:grammar:2",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 2,
+              "run_end": 7,
+              "note": "个 is the general classifier between 一 and 修理角."
+            },
+            {
+              "key": "repair-1:grammar:3",
+              "construction_key": "zh:de-modifier",
+              "run_start": 4,
+              "run_end": 7,
+              "note": "新的 describes the repair corner as new."
+            }
+          ]
+        },
+        {
+          "key": "repair-2",
+          "runs": [
+            {
+              "text": "周六",
+              "term": {
+                "key": "grammar-demo-zhouliu-saturday",
+                "lemma": "周六",
+                "pos": "noun",
+                "gloss": "Saturday",
+                "pronunciation": "zhōu liù",
+                "frequency_rank": 1100
+              }
+            },
+            {
+              "text": "早上",
+              "term": {
+                "key": "grammar-demo-zaoshang-morning",
+                "lemma": "早上",
+                "pos": "noun",
+                "gloss": "morning",
+                "pronunciation": "zǎo shang",
+                "frequency_rank": 330
+              }
+            },
+            { "text": "，" },
+            {
+              "text": "王阿姨",
+              "term": {
+                "key": "grammar-demo-wangayi-auntie-wang",
+                "lemma": "王阿姨",
+                "pos": "proper noun",
+                "gloss": "Auntie Wang",
+                "pronunciation": "Wáng ā yí"
+              }
+            },
+            {
+              "text": "带来",
+              "term": {
+                "key": "grammar-demo-dailai-bring",
+                "lemma": "带来",
+                "pos": "verb",
+                "gloss": "to bring",
+                "pronunciation": "dài lái",
+                "frequency_rank": 850
+              }
+            },
+            {
+              "text": "了",
+              "term": {
+                "key": "grammar-demo-le-perfective",
+                "lemma": "了",
+                "pos": "aspect particle",
+                "gloss": "perfective aspect marker",
+                "pronunciation": "le",
+                "frequency_rank": 6
+              }
+            },
+            {
+              "text": "一",
+              "term": {
+                "key": "grammar-demo-yi-one",
+                "lemma": "一",
+                "pos": "numeral",
+                "gloss": "one",
+                "pronunciation": "yī",
+                "frequency_rank": 2
+              }
+            },
+            {
+              "text": "把",
+              "term": {
+                "key": "grammar-demo-ba-classifier",
+                "lemma": "把",
+                "pos": "classifier",
+                "gloss": "classifier for objects with handles",
+                "pronunciation": "bǎ",
+                "frequency_rank": 420
+              }
+            },
+            {
+              "text": "红",
+              "term": {
+                "key": "grammar-demo-hong-red",
+                "lemma": "红",
+                "pos": "adjective",
+                "gloss": "red",
+                "pronunciation": "hóng",
+                "frequency_rank": 760
+              }
+            },
+            {
+              "text": "伞",
+              "term": {
+                "key": "grammar-demo-san-umbrella",
+                "lemma": "伞",
+                "pos": "noun",
+                "gloss": "umbrella",
+                "pronunciation": "sǎn",
+                "frequency_rank": 2800
+              }
+            },
+            { "text": "。" }
+          ],
+          "translation": "On Saturday morning, Auntie Wang brought a red umbrella.",
+          "grammar": [
+            {
+              "key": "repair-2:grammar:1",
+              "construction_key": "zh:le-perfective",
+              "run_start": 4,
+              "run_end": 6,
+              "note": "了 presents bringing the umbrella as a completed event."
+            },
+            {
+              "key": "repair-2:grammar:2",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 6,
+              "run_end": 10,
+              "note": "把 is the classifier normally used for an umbrella."
+            }
+          ]
+        },
+        {
+          "key": "repair-3",
+          "runs": [
+            {
+              "text": "她",
+              "term": {
+                "key": "grammar-demo-ta-she",
+                "lemma": "她",
+                "pos": "pronoun",
+                "gloss": "she",
+                "pronunciation": "tā",
+                "frequency_rank": 30
+              }
+            },
+            {
+              "text": "说",
+              "term": {
+                "key": "grammar-demo-shuo-say",
+                "lemma": "说",
+                "pos": "verb",
+                "gloss": "to say",
+                "pronunciation": "shuō",
+                "frequency_rank": 40
+              }
+            },
+            {
+              "text": "雨伞",
+              "term": {
+                "key": "grammar-demo-yusan-umbrella",
+                "lemma": "雨伞",
+                "pos": "noun",
+                "gloss": "umbrella",
+                "pronunciation": "yǔ sǎn",
+                "frequency_rank": 2100
+              }
+            },
+            {
+              "text": "有",
+              "term": {
+                "key": "grammar-demo-you-have-exist",
+                "lemma": "有",
+                "pos": "verb",
+                "gloss": "to have; there is",
+                "pronunciation": "yǒu",
+                "frequency_rank": 8
+              }
+            },
+            {
+              "text": "一",
+              "term": {
+                "key": "grammar-demo-yi-one",
+                "lemma": "一",
+                "pos": "numeral",
+                "gloss": "one",
+                "pronunciation": "yī",
+                "frequency_rank": 2
+              }
+            },
+            {
+              "text": "个",
+              "term": {
+                "key": "ge-general-classifier",
+                "lemma": "个",
+                "pos": "classifier",
+                "gloss": "general classifier",
+                "pronunciation": "gè",
+                "frequency_rank": 12
+              }
+            },
+            {
+              "text": "小",
+              "term": {
+                "key": "grammar-demo-xiao-small",
+                "lemma": "小",
+                "pos": "adjective",
+                "gloss": "small",
+                "pronunciation": "xiǎo",
+                "frequency_rank": 120
+              }
+            },
+            {
+              "text": "洞",
+              "term": {
+                "key": "grammar-demo-dong-hole",
+                "lemma": "洞",
+                "pos": "noun",
+                "gloss": "hole",
+                "pronunciation": "dòng",
+                "frequency_rank": 3100
+              }
+            },
+            { "text": "，" },
+            {
+              "text": "下雨",
+              "term": {
+                "key": "grammar-demo-xiayu-rain",
+                "lemma": "下雨",
+                "pos": "verb",
+                "gloss": "to rain",
+                "pronunciation": "xià yǔ",
+                "frequency_rank": 1400
+              }
+            },
+            {
+              "text": "时",
+              "term": {
+                "key": "grammar-demo-shi-when",
+                "lemma": "时",
+                "pos": "localizer",
+                "gloss": "when; at the time of",
+                "pronunciation": "shí",
+                "frequency_rank": 210
+              }
+            },
+            {
+              "text": "会",
+              "term": {
+                "key": "grammar-demo-hui-will",
+                "lemma": "会",
+                "pos": "modal verb",
+                "gloss": "will; be likely to",
+                "pronunciation": "huì",
+                "frequency_rank": 45
+              }
+            },
+            {
+              "text": "漏水",
+              "term": {
+                "key": "grammar-demo-loushui-leak",
+                "lemma": "漏水",
+                "pos": "verb",
+                "gloss": "to leak water",
+                "pronunciation": "lòu shuǐ",
+                "frequency_rank": 6600
+              }
+            },
+            { "text": "。" }
+          ],
+          "translation": "She said the umbrella had a small hole and would leak when it rained.",
+          "grammar": [
+            {
+              "key": "repair-3:grammar:1",
+              "construction_key": "zh:you-existence-possession",
+              "run_start": 2,
+              "run_end": 8,
+              "note": "有 describes the umbrella as possessing a hole."
+            },
+            {
+              "key": "repair-3:grammar:2",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 4,
+              "run_end": 8,
+              "note": "个 classifies the small hole."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "repair-work",
+      "sentences": [
+        {
+          "key": "repair-4",
+          "runs": [
+            {
+              "text": "志愿者",
+              "term": {
+                "key": "grammar-demo-zhiyuanzhe-volunteer",
+                "lemma": "志愿者",
+                "pos": "noun",
+                "gloss": "volunteer",
+                "pronunciation": "zhì yuàn zhě",
+                "frequency_rank": 3100
+              }
+            },
+            {
+              "text": "先",
+              "term": {
+                "key": "grammar-demo-xian-first",
+                "lemma": "先",
+                "pos": "adverb",
+                "gloss": "first; beforehand",
+                "pronunciation": "xiān",
+                "frequency_rank": 270
+              }
+            },
+            {
+              "text": "观察",
+              "term": {
+                "key": "guancha-observe",
+                "lemma": "观察",
+                "pos": "verb",
+                "gloss": "to observe",
+                "pronunciation": "guānchá",
+                "frequency_rank": 2300
+              }
+            },
+            {
+              "text": "伞布",
+              "term": {
+                "key": "grammar-demo-sanbu-umbrella-fabric",
+                "lemma": "伞布",
+                "pos": "noun",
+                "gloss": "umbrella fabric",
+                "pronunciation": "sǎn bù",
+                "frequency_rank": 12000
+              }
+            },
+            { "text": "，" },
+            {
+              "text": "再",
+              "term": {
+                "key": "grammar-demo-zai-then",
+                "lemma": "再",
+                "pos": "adverb",
+                "gloss": "then; again",
+                "pronunciation": "zài",
+                "frequency_rank": 55
+              }
+            },
+            {
+              "text": "用",
+              "term": {
+                "key": "grammar-demo-yong-use",
+                "lemma": "用",
+                "pos": "verb",
+                "gloss": "to use",
+                "pronunciation": "yòng",
+                "frequency_rank": 70
+              }
+            },
+            {
+              "text": "一",
+              "term": {
+                "key": "grammar-demo-yi-one",
+                "lemma": "一",
+                "pos": "numeral",
+                "gloss": "one",
+                "pronunciation": "yī",
+                "frequency_rank": 2
+              },
+              "pronunciation": "yí"
+            },
+            {
+              "text": "块",
+              "term": {
+                "key": "grammar-demo-kuai-piece-classifier",
+                "lemma": "块",
+                "pos": "classifier",
+                "gloss": "piece; classifier for pieces",
+                "pronunciation": "kuài",
+                "frequency_rank": 520
+              }
+            },
+            {
+              "text": "旧",
+              "term": {
+                "key": "grammar-demo-jiu-old",
+                "lemma": "旧",
+                "pos": "adjective",
+                "gloss": "old; used",
+                "pronunciation": "jiù",
+                "frequency_rank": 650
+              }
+            },
+            {
+              "text": "布",
+              "term": {
+                "key": "grammar-demo-bu-cloth",
+                "lemma": "布",
+                "pos": "noun",
+                "gloss": "cloth",
+                "pronunciation": "bù",
+                "frequency_rank": 2300
+              }
+            },
+            {
+              "text": "补好",
+              "term": {
+                "key": "grammar-demo-buhao-mend",
+                "lemma": "补好",
+                "pos": "verb",
+                "gloss": "to mend successfully",
+                "pronunciation": "bǔ hǎo",
+                "frequency_rank": 8500
+              }
+            },
+            {
+              "text": "那",
+              "term": {
+                "key": "grammar-demo-na-that",
+                "lemma": "那",
+                "pos": "determiner",
+                "gloss": "that",
+                "pronunciation": "nà",
+                "frequency_rank": 50
+              }
+            },
+            {
+              "text": "个",
+              "term": {
+                "key": "ge-general-classifier",
+                "lemma": "个",
+                "pos": "classifier",
+                "gloss": "general classifier",
+                "pronunciation": "gè",
+                "frequency_rank": 12
+              }
+            },
+            {
+              "text": "地方",
+              "term": {
+                "key": "grammar-demo-difang-place",
+                "lemma": "地方",
+                "pos": "noun",
+                "gloss": "place; spot",
+                "pronunciation": "dì fang",
+                "frequency_rank": 100
+              }
+            },
+            { "text": "。" }
+          ],
+          "translation": "The volunteer first inspected the umbrella fabric, then mended the spot with a piece of old cloth.",
+          "grammar": [
+            {
+              "key": "repair-4:grammar:1",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 7,
+              "run_end": 11,
+              "note": "块 classifies a piece of cloth."
+            },
+            {
+              "key": "repair-4:grammar:2",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 12,
+              "run_end": 15,
+              "note": "那个 identifies that particular spot."
+            }
+          ]
+        },
+        {
+          "key": "repair-5",
+          "runs": [
+            {
+              "text": "王阿姨",
+              "term": {
+                "key": "grammar-demo-wangayi-auntie-wang",
+                "lemma": "王阿姨",
+                "pos": "proper noun",
+                "gloss": "Auntie Wang",
+                "pronunciation": "Wáng ā yí"
+              }
+            },
+            {
+              "text": "打开",
+              "term": {
+                "key": "grammar-demo-dakai-open",
+                "lemma": "打开",
+                "pos": "verb",
+                "gloss": "to open",
+                "pronunciation": "dǎ kāi",
+                "frequency_rank": 570
+              }
+            },
+            {
+              "text": "雨伞",
+              "term": {
+                "key": "grammar-demo-yusan-umbrella",
+                "lemma": "雨伞",
+                "pos": "noun",
+                "gloss": "umbrella",
+                "pronunciation": "yǔ sǎn",
+                "frequency_rank": 2100
+              }
+            },
+            { "text": "，" },
+            {
+              "text": "慢慢",
+              "term": {
+                "key": "grammar-demo-manman-slowly",
+                "lemma": "慢慢",
+                "pos": "adverb",
+                "gloss": "slowly",
+                "pronunciation": "màn màn",
+                "frequency_rank": 900
+              }
+            },
+            {
+              "text": "转",
+              "term": {
+                "key": "grammar-demo-zhuan-turn",
+                "lemma": "转",
+                "pos": "verb",
+                "gloss": "to turn; rotate",
+                "pronunciation": "zhuàn",
+                "frequency_rank": 800
+              }
+            },
+            {
+              "text": "了",
+              "term": {
+                "key": "grammar-demo-le-perfective",
+                "lemma": "了",
+                "pos": "aspect particle",
+                "gloss": "perfective aspect marker",
+                "pronunciation": "le",
+                "frequency_rank": 6
+              }
+            },
+            {
+              "text": "一",
+              "term": {
+                "key": "grammar-demo-yi-one",
+                "lemma": "一",
+                "pos": "numeral",
+                "gloss": "one",
+                "pronunciation": "yī",
+                "frequency_rank": 2
+              }
+            },
+            {
+              "text": "圈",
+              "term": {
+                "key": "grammar-demo-quan-circuit",
+                "lemma": "圈",
+                "pos": "measure word",
+                "gloss": "a circuit; a round",
+                "pronunciation": "quān",
+                "frequency_rank": 1600
+              }
+            },
+            { "text": "，" },
+            {
+              "text": "然后",
+              "term": {
+                "key": "grammar-demo-ranhou-then",
+                "lemma": "然后",
+                "pos": "conjunction",
+                "gloss": "then; afterwards",
+                "pronunciation": "rán hòu",
+                "frequency_rank": 190
+              }
+            },
+            {
+              "text": "高兴",
+              "term": {
+                "key": "grammar-demo-gaoxing-happy",
+                "lemma": "高兴",
+                "pos": "adjective",
+                "gloss": "happy",
+                "pronunciation": "gāo xìng",
+                "frequency_rank": 850
+              }
+            },
+            {
+              "text": "地",
+              "term": {
+                "key": "grammar-demo-de-adverbial",
+                "lemma": "地",
+                "pos": "particle",
+                "gloss": "adverbial marker",
+                "pronunciation": "de",
+                "frequency_rank": 35
+              }
+            },
+            {
+              "text": "笑",
+              "term": {
+                "key": "grammar-demo-xiao-laugh",
+                "lemma": "笑",
+                "pos": "verb",
+                "gloss": "to laugh; smile",
+                "pronunciation": "xiào",
+                "frequency_rank": 620
+              }
+            },
+            {
+              "text": "了",
+              "term": {
+                "key": "grammar-demo-le-perfective",
+                "lemma": "了",
+                "pos": "aspect particle",
+                "gloss": "perfective aspect marker",
+                "pronunciation": "le",
+                "frequency_rank": 6
+              }
+            },
+            { "text": "。" }
+          ],
+          "translation": "Auntie Wang opened the umbrella, slowly turned it around once, and then smiled happily.",
+          "grammar": [
+            {
+              "key": "repair-5:grammar:1",
+              "construction_key": "zh:le-perfective",
+              "run_start": 5,
+              "run_end": 7,
+              "note": "了 bounds the completed turn."
+            },
+            {
+              "key": "repair-5:grammar:2",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 7,
+              "run_end": 9,
+              "note": "一圈 means one complete circuit."
+            },
+            {
+              "key": "repair-5:grammar:3",
+              "construction_key": "zh:le-perfective",
+              "run_start": 13,
+              "run_end": 15,
+              "note": "The final 了 presents her smile as the next completed event."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "repair-ending",
+      "sentences": [
+        {
+          "key": "repair-6",
+          "runs": [
+            {
+              "text": "中午",
+              "term": {
+                "key": "grammar-demo-zhongwu-noon",
+                "lemma": "中午",
+                "pos": "noun",
+                "gloss": "noon",
+                "pronunciation": "zhōng wǔ",
+                "frequency_rank": 700
+              }
+            },
+            {
+              "text": "以前",
+              "term": {
+                "key": "grammar-demo-yiqian-before",
+                "lemma": "以前",
+                "pos": "localizer",
+                "gloss": "before; previously",
+                "pronunciation": "yǐ qián",
+                "frequency_rank": 260
+              }
+            },
+            { "text": "，" },
+            {
+              "text": "他们",
+              "term": {
+                "key": "grammar-demo-tamen-they",
+                "lemma": "他们",
+                "pos": "pronoun",
+                "gloss": "they",
+                "pronunciation": "tā men",
+                "frequency_rank": 60
+              }
+            },
+            {
+              "text": "修好",
+              "term": {
+                "key": "grammar-demo-xiuhao-repair",
+                "lemma": "修好",
+                "pos": "verb",
+                "gloss": "to repair successfully",
+                "pronunciation": "xiū hǎo",
+                "frequency_rank": 6200
+              }
+            },
+            {
+              "text": "了",
+              "term": {
+                "key": "grammar-demo-le-perfective",
+                "lemma": "了",
+                "pos": "aspect particle",
+                "gloss": "perfective aspect marker",
+                "pronunciation": "le",
+                "frequency_rank": 6
+              }
+            },
+            {
+              "text": "一",
+              "term": {
+                "key": "grammar-demo-yi-one",
+                "lemma": "一",
+                "pos": "numeral",
+                "gloss": "one",
+                "pronunciation": "yī",
+                "frequency_rank": 2
+              },
+              "pronunciation": "yì"
+            },
+            {
+              "text": "盏",
+              "term": {
+                "key": "grammar-demo-zhan-lamp-classifier",
+                "lemma": "盏",
+                "pos": "classifier",
+                "gloss": "classifier for lamps",
+                "pronunciation": "zhǎn",
+                "frequency_rank": 7200
+              }
+            },
+            {
+              "text": "灯",
+              "term": {
+                "key": "grammar-demo-deng-lamp",
+                "lemma": "灯",
+                "pos": "noun",
+                "gloss": "lamp; light",
+                "pronunciation": "dēng",
+                "frequency_rank": 1000
+              }
+            },
+            {
+              "text": "和",
+              "term": {
+                "key": "grammar-demo-he-and",
+                "lemma": "和",
+                "pos": "conjunction",
+                "gloss": "and",
+                "pronunciation": "hé",
+                "frequency_rank": 15
+              }
+            },
+            {
+              "text": "两",
+              "term": {
+                "key": "grammar-demo-liang-two",
+                "lemma": "两",
+                "pos": "numeral",
+                "gloss": "two (before a classifier)",
+                "pronunciation": "liǎng",
+                "frequency_rank": 140
+              }
+            },
+            {
+              "text": "把",
+              "term": {
+                "key": "grammar-demo-ba-classifier",
+                "lemma": "把",
+                "pos": "classifier",
+                "gloss": "classifier for objects with handles",
+                "pronunciation": "bǎ",
+                "frequency_rank": 420
+              }
+            },
+            {
+              "text": "伞",
+              "term": {
+                "key": "grammar-demo-san-umbrella",
+                "lemma": "伞",
+                "pos": "noun",
+                "gloss": "umbrella",
+                "pronunciation": "sǎn",
+                "frequency_rank": 2800
+              }
+            },
+            { "text": "。" }
+          ],
+          "translation": "Before noon, they had repaired one lamp and two umbrellas.",
+          "grammar": [
+            {
+              "key": "repair-6:grammar:1",
+              "construction_key": "zh:le-perfective",
+              "run_start": 4,
+              "run_end": 6,
+              "note": "了 presents the repairs as completed before noon."
+            },
+            {
+              "key": "repair-6:grammar:2",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 6,
+              "run_end": 9,
+              "note": "盏 is the classifier for the lamp."
+            },
+            {
+              "key": "repair-6:grammar:3",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 10,
+              "run_end": 13,
+              "note": "把 classifies the two umbrellas."
+            }
+          ]
+        },
+        {
+          "key": "repair-7",
+          "runs": [
+            {
+              "text": "桌上",
+              "term": {
+                "key": "grammar-demo-zhuoshang-on-table",
+                "lemma": "桌上",
+                "pos": "localizer phrase",
+                "gloss": "on the table",
+                "pronunciation": "zhuō shàng",
+                "frequency_rank": 2200
+              }
+            },
+            {
+              "text": "还",
+              "term": {
+                "key": "grammar-demo-hai-still",
+                "lemma": "还",
+                "pos": "adverb",
+                "gloss": "still; also",
+                "pronunciation": "hái",
+                "frequency_rank": 25
+              }
+            },
+            {
+              "text": "有",
+              "term": {
+                "key": "grammar-demo-you-have-exist",
+                "lemma": "有",
+                "pos": "verb",
+                "gloss": "to have; there is",
+                "pronunciation": "yǒu",
+                "frequency_rank": 8
+              }
+            },
+            {
+              "text": "一",
+              "term": {
+                "key": "grammar-demo-yi-one",
+                "lemma": "一",
+                "pos": "numeral",
+                "gloss": "one",
+                "pronunciation": "yī",
+                "frequency_rank": 2
+              },
+              "pronunciation": "yì"
+            },
+            {
+              "text": "台",
+              "term": {
+                "key": "grammar-demo-tai-machine-classifier",
+                "lemma": "台",
+                "pos": "classifier",
+                "gloss": "classifier for machines",
+                "pronunciation": "tái",
+                "frequency_rank": 430
+              }
+            },
+            {
+              "text": "旧",
+              "term": {
+                "key": "grammar-demo-jiu-old",
+                "lemma": "旧",
+                "pos": "adjective",
+                "gloss": "old; used",
+                "pronunciation": "jiù",
+                "frequency_rank": 650
+              }
+            },
+            {
+              "text": "收音机",
+              "term": {
+                "key": "grammar-demo-shouyinji-radio",
+                "lemma": "收音机",
+                "pos": "noun",
+                "gloss": "radio",
+                "pronunciation": "shōu yīn jī",
+                "frequency_rank": 3700
+              }
+            },
+            { "text": "，" },
+            {
+              "text": "志愿者",
+              "term": {
+                "key": "grammar-demo-zhiyuanzhe-volunteer",
+                "lemma": "志愿者",
+                "pos": "noun",
+                "gloss": "volunteer",
+                "pronunciation": "zhì yuàn zhě",
+                "frequency_rank": 3100
+              }
+            },
+            {
+              "text": "决定",
+              "term": {
+                "key": "grammar-demo-jueding-decide",
+                "lemma": "决定",
+                "pos": "verb",
+                "gloss": "to decide",
+                "pronunciation": "jué dìng",
+                "frequency_rank": 450
+              }
+            },
+            {
+              "text": "下周",
+              "term": {
+                "key": "grammar-demo-xiazhou-next-week",
+                "lemma": "下周",
+                "pos": "noun",
+                "gloss": "next week",
+                "pronunciation": "xià zhōu",
+                "frequency_rank": 1200
+              }
+            },
+            {
+              "text": "重新",
+              "term": {
+                "key": "chongxin-again",
+                "lemma": "重新",
+                "pos": "adverb",
+                "gloss": "again; anew",
+                "pronunciation": "chóngxīn",
+                "frequency_rank": 1050
+              }
+            },
+            {
+              "text": "检查",
+              "term": {
+                "key": "grammar-demo-jiancha-check",
+                "lemma": "检查",
+                "pos": "verb",
+                "gloss": "to inspect; check",
+                "pronunciation": "jiǎn chá",
+                "frequency_rank": 650
+              }
+            },
+            { "text": "。" }
+          ],
+          "translation": "There was still an old radio on the table, and the volunteer decided to inspect it again next week.",
+          "grammar": [
+            {
+              "key": "repair-7:grammar:1",
+              "construction_key": "zh:you-existence-possession",
+              "run_start": 0,
+              "run_end": 7,
+              "note": "桌上 sets the location and 有 introduces the radio that remains there."
+            },
+            {
+              "key": "repair-7:grammar:2",
+              "construction_key": "zh:measure-word-phrase",
+              "run_start": 3,
+              "run_end": 7,
+              "note": "台 is the classifier for the radio."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "target_term_keys": ["guancha-observe", "chongxin-again"],
+  "metadata": {
+    "source": "grammar-feature-demo",
+    "grammar": {
+      "preferred": 2,
+      "max": 3,
+      "offered": [
+        "zh:measure-word-phrase",
+        "zh:you-existence-possession",
+        "zh:de-modifier",
+        "zh:le-perfective"
+      ],
+      "realized": [
+        "zh:measure-word-phrase",
+        "zh:you-existence-possession"
+      ],
+      "annotated": [
+        "zh:measure-word-phrase",
+        "zh:you-existence-possession",
+        "zh:de-modifier",
+        "zh:le-perfective"
+      ]
+    }
+  }
+}

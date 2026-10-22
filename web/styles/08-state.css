@@ -1,0 +1,33 @@
+.state-card {
+  display: grid;
+  min-height: 22rem;
+  padding: 3rem;
+  text-align: center;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-paper);
+  place-content: center;
+  justify-items: center;
+}
+
+.state-card h1 {
+  margin: 0.2rem 0 0.7rem;
+  font-family: var(--font-reading);
+  font-size: clamp(1.8rem, 5vw, 2.7rem);
+}
+
+.state-detail {
+  max-width: 32rem;
+  margin: 0 0 1.5rem;
+  color: var(--color-muted);
+}
+
+.loading-mark {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--color-line);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}

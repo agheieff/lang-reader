@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "key": "es-demo-last-train",
+  "title": "El último tren",
+  "learning_language": "es-ES",
+  "translation_language": "en",
+  "topic": "everyday travel",
+  "level": "A2",
+  "difficulty": 0.27,
+  "target_term_keys": [
+    "es-ES:retraso:NOUN",
+    "es-ES:espera:NOUN"
+  ],
+  "blocks": [
+    {
+      "key": "opening",
+      "sentences": [
+        {
+          "key": "arrival",
+          "translation": "Mara arrives at the station when the sun is already disappearing.",
+          "runs": [
+            {"text": "Mara "},
+            {
+              "text": "llega",
+              "term": {"key": "es-ES:llegar:VERB", "lemma": "llegar", "pos": "VERB", "gloss": "arrives; reaches"}
+            },
+            {"text": " a la "},
+            {
+              "text": "estación",
+              "term": {"key": "es-ES:estación:NOUN", "lemma": "estación", "pos": "NOUN", "gloss": "station"}
+            },
+            {"text": " cuando el "},
+            {
+              "text": "sol",
+              "term": {"key": "es-ES:sol:NOUN", "lemma": "sol", "pos": "NOUN", "gloss": "sun"}
+            },
+            {"text": " ya "},
+            {
+              "text": "desaparece",
+              "term": {"key": "es-ES:desaparecer:VERB", "lemma": "desaparecer", "pos": "VERB", "gloss": "disappears"}
+            },
+            {"text": "."}
+          ]
+        },
+        {
+          "key": "platform",
+          "translation": "On the platform, only a man with a blue suitcase remains.",
+          "runs": [
+            {"text": "En el "},
+            {
+              "text": "andén",
+              "term": {"key": "es-ES:andén:NOUN", "lemma": "andén", "pos": "NOUN", "gloss": "platform"}
+            },
+            {"text": " solo "},
+            {
+              "text": "queda",
+              "term": {"key": "es-ES:quedar:VERB", "lemma": "quedar", "pos": "VERB", "gloss": "remains; is left"}
+            },
+            {"text": " un "},
+            {
+              "text": "hombre",
+              "term": {"key": "es-ES:hombre:NOUN", "lemma": "hombre", "pos": "NOUN", "gloss": "man"}
+            },
+            {"text": " con una "},
+            {
+              "text": "maleta",
+              "term": {"key": "es-ES:maleta:NOUN", "lemma": "maleta", "pos": "NOUN", "gloss": "suitcase"}
+            },
+            {"text": " "},
+            {
+              "text": "azul",
+              "term": {"key": "es-ES:azul:ADJ", "lemma": "azul", "pos": "ADJ", "gloss": "blue"}
+            },
+            {"text": "."}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "conversation",
+      "sentences": [
+        {
+          "key": "delay",
+          "translation": "The board announces a twenty-minute delay, so the two begin to talk.",
+          "runs": [
+            {"text": "El "},
+            {
+              "text": "panel",
+              "term": {"key": "es-ES:panel:NOUN", "lemma": "panel", "pos": "NOUN", "gloss": "display board; panel"}
+            },
+            {"text": " "},
+            {
+              "text": "anuncia",
+              "term": {"key": "es-ES:anunciar:VERB", "lemma": "anunciar", "pos": "VERB", "gloss": "announces"}
+            },
+            {"text": " un "},
+            {
+              "text": "retraso",
+              "term": {"key": "es-ES:retraso:NOUN", "lemma": "retraso", "pos": "NOUN", "gloss": "delay"}
+            },
+            {"text": " de veinte minutos, así que los dos "},
+            {
+              "text": "empiezan",
+              "term": {"key": "es-ES:empezar:VERB", "lemma": "empezar", "pos": "VERB", "gloss": "begin; start"}
+            },
+            {"text": " a "},
+            {
+              "text": "hablar",
+              "term": {"key": "es-ES:hablar:VERB", "lemma": "hablar", "pos": "VERB", "gloss": "to talk; to speak"}
+            },
+            {"text": "."}
+          ]
+        },
+        {
+          "key": "departure",
+          "translation": "When the train finally arrives, both feel that the wait has been short.",
+          "runs": [
+            {"text": "Cuando por fin "},
+            {
+              "text": "llega",
+              "term": {"key": "es-ES:llegar:VERB", "lemma": "llegar", "pos": "VERB", "gloss": "arrives; reaches"}
+            },
+            {"text": " el "},
+            {
+              "text": "tren",
+              "term": {"key": "es-ES:tren:NOUN", "lemma": "tren", "pos": "NOUN", "gloss": "train"}
+            },
+            {"text": ", ambos "},
+            {
+              "text": "sienten",
+              "term": {"key": "es-ES:sentir:VERB", "lemma": "sentir", "pos": "VERB", "gloss": "feel"}
+            },
+            {"text": " que la "},
+            {
+              "text": "espera",
+              "term": {"key": "es-ES:espera:NOUN", "lemma": "espera", "pos": "NOUN", "gloss": "wait; waiting"}
+            },
+            {"text": " ha sido "},
+            {
+              "text": "corta",
+              "term": {"key": "es-ES:corto:ADJ", "lemma": "corto", "pos": "ADJ", "gloss": "short"}
+            },
+            {"text": "."}
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "purpose": "tracked demo lesson",
+    "generation_notes": "Targets are introduced in clear travel context."
+  }
+}

@@ -1,0 +1,3 @@
+# The Chinese word list: frequency-ordered HSK vocabulary with pinyin and glosses.
+languages = ["zh"]
+source = "hsk"

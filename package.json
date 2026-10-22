@@ -1,0 +1,22 @@
+{
+  "name": "lang-reader-web",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "packageManager": "pnpm@11.3.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "./run.sh",
+    "build": "tsc && cat web/styles/*.css > server/static/styles.css",
+    "check": "biome check web && tsc --noEmit",
+    "format": "biome check --write web",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.1.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,25 @@
+schema_version = 1
+id = "es"
+tags = ["es"]
+description = "Spanish lemma and tokenization conventions shared by regional profiles."
+generation_guidance = [
+  "Use infinitives as verb lemmas while preserving the observed conjugated surface in run.text.",
+  "Use singular dictionary noun lemmas and canonical adjective lemmas; keep genuinely different meanings and parts of speech separate.",
+  "Separate attached object/reflexive clitics into their reusable grammatical units when the written form permits a faithful segmentation; do not invent characters or spaces.",
+  "Treat fixed contractions such as al and del as meaningful contraction units rather than applying fuzzy stemming.",
+]
+
+[pos_aliases]
+v = "verb"
+verbo = "verb"
+n = "noun"
+nombre = "noun"
+adj = "adjective"
+adjetivo = "adjective"
+
+[[lemma_conventions]]
+id = "verb-infinitive"
+pos = ["verb"]
+guidance = "Spanish verb lemmas should normally be infinitives ending in -ar, -er, -ir, or their reflexive -se forms."
+lemma_regex = '.*(?:ar|er|ir)(?:se)?$'
+severity = "guidance"

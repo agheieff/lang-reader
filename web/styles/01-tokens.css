@@ -1,0 +1,185 @@
+:root {
+  color-scheme: light;
+
+  /* Agent-editable palette */
+  --color-canvas: #f4f1e9;
+  --color-paper: #fffdf8;
+  --color-ink: #1e2723;
+  --color-muted: #68716c;
+  --color-line: #d8d8cf;
+  --color-accent: #176b5a;
+  --color-accent-strong: #0d5648;
+  --color-accent-soft: #e2f1eb;
+  --color-term: #a34f2d;
+  --color-term-soft: #f8e9df;
+  --color-danger: #9d3f35;
+  --color-on-accent: #fff;
+  --color-on-danger: #fff;
+  --color-canvas-glow: rgb(255 255 255 / 72%);
+  --color-rail: rgb(255 253 248 / 72%);
+  --color-summary: rgb(255 253 248 / 68%);
+  --color-floating: rgb(255 253 248 / 94%);
+  --color-table-heading: rgb(244 241 233 / 64%);
+  --color-control-fill: rgb(255 255 255 / 56%);
+  --color-accent-wash: rgb(226 241 235 / 54%);
+  --color-accent-wash-subtle: rgb(226 241 235 / 34%);
+  --color-accent-wash-faint: rgb(226 241 235 / 28%);
+  --color-accent-chip: rgb(226 241 235 / 58%);
+  --color-accent-chip-border: rgb(47 110 85 / 16%);
+  --color-accent-soft-hover: #d2e9e1;
+  --color-accent-border: #c3ddd4;
+  --color-accent-border-soft: #b8d8cd;
+  --color-accent-border-strong: #9fcbbb;
+  --color-copy-secondary: #3e5149;
+  --color-copy-rule: #dbe8e3;
+  --color-control-border-hover: #aebbb5;
+  --color-gloss-border: #d7cfc5;
+  --term-uncertain-ink: #71371f;
+  --term-focus-ink: #255b78;
+  --term-focus-background: #e4eff4;
+  --term-incidental-ink: #5e5369;
+  --term-incidental-background: #eeeaf1;
+  --term-familiar: rgb(23 107 90 / 0%);
+  --term-familiar-active: rgb(23 107 90 / 58%);
+  --term-expected: rgb(23 107 90 / 60%);
+  --term-expected-active: rgb(23 107 90 / 88%);
+  --term-uncertain: rgb(163 79 45 / 76%);
+  --term-uncertain-active: rgb(163 79 45 / 88%);
+  --term-focus: rgb(43 101 136 / 80%);
+  --term-focus-active: rgb(43 101 136 / 90%);
+  --term-incidental: rgb(126 82 139 / 64%);
+  --term-incidental-active: rgb(126 82 139 / 88%);
+  --term-line-inset: 1.3px;
+  --term-line-height: 0.072em;
+  --tone-1: #c53d36;
+  --tone-2: #247d48;
+  --tone-3: #2f68ad;
+  --tone-4: #7950a6;
+  --tone-5: #69716d;
+
+  /* Agent-editable typography and layout */
+  --font-ui: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-reading: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --reading-size: clamp(1.18rem, 1rem + 0.65vw, 1.48rem);
+  --reading-leading: 1.9;
+  --reader-width: 49rem;
+  --page-gutter: clamp(1rem, 4vw, 2.5rem);
+  --radius-sm: 0.55rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --shadow-paper: 0 1.1rem 3rem rgb(35 45 40 / 8%);
+  --shadow-rail: 0 0.65rem 1.8rem rgb(35 45 40 / 6%);
+  --shadow-popover: 0 1rem 3rem rgb(25 32 29 / 20%);
+  --shadow-control: 0 0.2rem 0.7rem rgb(30 39 35 / 10%);
+  --shadow-mobile-card: 0 0.5rem 1.4rem rgb(35 45 40 / 5%);
+  --shadow-floating: 0 0.45rem 1.5rem rgb(30 39 35 / 16%);
+  --shadow-status: 0 0.6rem 2rem rgb(30 39 35 / 20%);
+  --focus-ring: 0 0 0 3px rgb(23 107 90 / 24%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-canvas: #111714;
+  --color-paper: #19211d;
+  --color-ink: #e8eee9;
+  --color-muted: #9ba79f;
+  --color-line: #344139;
+  --color-accent: #58b99e;
+  --color-accent-strong: #83d6bd;
+  --color-accent-soft: #203f36;
+  --color-term: #e09370;
+  --color-term-soft: #492f25;
+  --color-danger: #bd574f;
+  --color-on-accent: #091d17;
+  --color-on-danger: #fff6f3;
+  --color-canvas-glow: rgb(87 145 119 / 13%);
+  --color-rail: rgb(25 33 29 / 84%);
+  --color-summary: rgb(25 33 29 / 78%);
+  --color-floating: rgb(25 33 29 / 96%);
+  --color-table-heading: rgb(17 23 20 / 72%);
+  --color-control-fill: rgb(232 238 233 / 8%);
+  --color-accent-wash: rgb(88 185 158 / 17%);
+  --color-accent-wash-subtle: rgb(88 185 158 / 12%);
+  --color-accent-wash-faint: rgb(88 185 158 / 8%);
+  --color-accent-chip: rgb(88 185 158 / 14%);
+  --color-accent-chip-border: rgb(131 214 189 / 22%);
+  --color-accent-soft-hover: #295247;
+  --color-accent-border: #3f675b;
+  --color-accent-border-soft: #477669;
+  --color-accent-border-strong: #57917f;
+  --color-copy-secondary: #c1cec7;
+  --color-copy-rule: #344b42;
+  --color-control-border-hover: #64736a;
+  --color-gloss-border: #4b504c;
+  --term-familiar: rgb(88 185 158 / 0%);
+  --term-familiar-active: rgb(105 212 181 / 68%);
+  --term-expected: rgb(105 212 181 / 62%);
+  --term-expected-active: rgb(131 224 197 / 92%);
+  --term-uncertain: rgb(235 151 112 / 78%);
+  --term-uncertain-active: rgb(245 174 141 / 94%);
+  --term-focus: rgb(105 175 219 / 82%);
+  --term-focus-active: rgb(134 198 238 / 96%);
+  --term-incidental: rgb(190 139 205 / 68%);
+  --term-incidental-active: rgb(213 163 228 / 94%);
+  --term-line-inset: 1.7px;
+  --term-line-height: 0.055em;
+  --term-uncertain-ink: #ffd0bb;
+  --term-focus-ink: #b9e3ff;
+  --term-focus-background: #213746;
+  --term-incidental-ink: #e7cbed;
+  --term-incidental-background: #3a2c3f;
+  --tone-1: #ff7069;
+  --tone-2: #63ce84;
+  --tone-3: #78adf2;
+  --tone-4: #bd8aed;
+  --tone-5: #adb6b0;
+  --shadow-paper: 0 1.1rem 3rem rgb(0 0 0 / 24%);
+  --shadow-rail: 0 0.65rem 1.8rem rgb(0 0 0 / 20%);
+  --shadow-popover: 0 1rem 3rem rgb(0 0 0 / 42%);
+  --shadow-control: 0 0.2rem 0.7rem rgb(0 0 0 / 30%);
+  --shadow-mobile-card: 0 0.5rem 1.4rem rgb(0 0 0 / 18%);
+  --shadow-floating: 0 0.45rem 1.5rem rgb(0 0 0 / 32%);
+  --shadow-status: 0 0.6rem 2rem rgb(0 0 0 / 36%);
+  --focus-ring: 0 0 0 3px rgb(88 185 158 / 34%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 20rem;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-ink);
+  background:
+    radial-gradient(circle at 15% 0%, var(--color-canvas-glow), transparent 28rem),
+    var(--color-canvas);
+  font-family: var(--font-ui);
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+
+[hidden][hidden] {
+  display: none;
+}

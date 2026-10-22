@@ -1,0 +1,61 @@
+# Lang Reader model providers. Copy to lang-reader.toml (git ignores that name) and edit.
+# The file is found at ./lang-reader.toml, or at the path in ARC_LANG_CONFIG.
+#
+# Declare the providers you have, then say which one serves each generation stage. API keys never
+# go in this file: put each key alone in a file (chmod 600) and point api_key_file at it, or name
+# an environment variable with api_key_env. A relative api_key_file is read from the directory of
+# this file. Check a provider with:  uv run lang provider test NAME
+#
+# Kinds:
+#   openai     any server that answers POST {base_url}/chat/completions: OpenAI, OpenRouter,
+#              DeepSeek, Groq, Together, Mistral, vLLM, llama.cpp, LM Studio, Ollama (/v1)
+#   anthropic  the Anthropic Messages API
+#   command    your own program (README, "Connect a model")
+#
+# Options of openai and anthropic: base_url, model, api_key_file | api_key_env,
+#   max_output_tokens, timeout_seconds (default 600), extra_body (merged into the request JSON).
+# Options of openai only: schema_mode = "schema" (default: response_format json_schema),
+#   "json_object" (JSON mode, schema added to the prompt) or "prompt" (schema in the prompt only,
+#   for servers without structured output);
+#   max_tokens_param = "max_tokens" (default) or "max_completion_tokens".
+
+[providers.main]
+kind = "openai"
+base_url = "https://api.openai.com/v1"
+model = "gpt-5.5"                      # an example: any chat model your account can call
+api_key_file = "openai.key"
+max_tokens_param = "max_completion_tokens"
+
+# More providers: uncomment, edit, and assign them below. Only providers that a stage uses need
+# a readable key.
+#
+# [providers.claude]
+# kind = "anthropic"
+# model = "claude-sonnet-5-5"
+# api_key_file = "anthropic.key"
+#
+# [providers.cheap]                    # DeepSeek; OpenRouter, Groq, ... only change these lines
+# kind = "openai"
+# base_url = "https://api.deepseek.com"
+# model = "deepseek-flash"
+# api_key_file = "deepseek.key"
+# schema_mode = "json_object"
+#
+# [providers.local]                    # Ollama; no key needed for a local server
+# kind = "openai"
+# base_url = "http://127.0.0.1:11434/v1"
+# model = "qwen3:14b"
+# schema_mode = "prompt"
+#
+# [providers.custom]                   # your own program, see the README
+# kind = "command"
+# command = ["/usr/local/bin/my-model-call"]
+# pass_env = ["MY_ADAPTER_HOME"]       # environment variables the command may see
+
+# Stages: prose, lexical, translation, grammar, preferences, legacy. "default" covers any stage
+# not listed. A list names fallbacks: the next provider is tried when the first is unavailable
+# (unreachable, HTTP 429/503) or fails.
+[stages]
+default = "main"
+# lexical = ["cheap", "main"]
+# translation = "cheap"

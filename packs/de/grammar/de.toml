@@ -1,0 +1,52 @@
+schema_version = 1
+id = "de"
+tags = ["de"]
+description = "Core German constructions shared by regional profiles."
+
+[[constructions]]
+key = "de:main-clause-v2"
+label = "Main-clause verb-second order"
+description = "The finite verb occupies the second syntactic position in a declarative main clause, even when another constituent comes first."
+category = "word order"
+difficulty = 0.14
+generation_hint = "Use a short declarative clause, optionally beginning with a time or place expression."
+
+[[constructions]]
+key = "de:accusative-object"
+label = "Accusative object"
+description = "A direct object marked by accusative case, visible especially in articles, pronouns, and masculine noun phrases."
+category = "case"
+difficulty = 0.22
+generation_hint = "Prefer a masculine singular noun phrase so the accusative marking is visible."
+
+[[constructions]]
+key = "de:separable-prefix-verb"
+label = "Separable-prefix verb"
+description = "A separable verbal prefix appears at the end of a finite main clause while remaining part of the dictionary verb."
+category = "verbs"
+difficulty = 0.30
+generation_hint = "Keep the finite verb and separated prefix in one sentence and include both in the run range."
+
+[[constructions]]
+key = "de:dative-complement"
+label = "Dative complement"
+description = "A noun phrase or pronoun marked by dative case as a recipient, beneficiary, location, or governed complement."
+category = "case"
+difficulty = 0.38
+generation_hint = "Use a context where the dative role and its case marking are both clear."
+
+[[constructions]]
+key = "de:subordinate-verb-final"
+label = "Subordinate-clause verb-final order"
+description = "A subordinating conjunction introduces a clause whose finite verb appears at or near the end."
+category = "word order"
+difficulty = 0.46
+generation_hint = "Use a common conjunction such as weil, dass, or obwohl and keep the clause compact."
+
+[[constructions]]
+key = "de:adjective-ending"
+label = "Attributive adjective ending"
+description = "An adjective before a noun takes an ending determined by case, gender, number, and the determiner pattern."
+category = "agreement"
+difficulty = 0.58
+generation_hint = "Choose a short noun phrase whose determiner and case make the adjective ending explainable."

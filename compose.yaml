@@ -1,0 +1,29 @@
+# One learner, one data volume. Put lang-reader.toml and your API key files in ./config (see
+# README, "Connect a model"); key paths in the file are relative to it. The app is published on
+# the host's loopback only. Optional settings go in .env (copy .env.example; not committed).
+x-lang: &lang
+  build: .
+  environment:
+    ARC_LANG_CONFIG: /config/lang-reader.toml
+  env_file:
+    - path: .env
+      required: false
+  volumes:
+    - lang-data:/data
+    - ./config:/config:ro
+  restart: unless-stopped
+
+services:
+  app:
+    <<: *lang
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  worker:
+    <<: *lang
+    command: ["python", "-m", "server.agent_worker"]
+    depends_on:
+      - app
+
+volumes:
+  lang-data:

@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta id="theme-color" name="theme-color" content="#f4f1e9">
+    <title>Lang Reader</title>
+    <script>
+      (() => {
+        const light = "#f4f1e9";
+        const dark = "#111714";
+        let theme = "light";
+        try {
+          const stored = localStorage.getItem("lang-reader:theme:v1");
+          theme = stored === "dark" ? "dark" : "light";
+        } catch {}
+        document.documentElement.dataset.theme = theme;
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.content = theme === "dark" ? dark : light;
+      })();
+    </script>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="{{ base_path }}/assets/styles.css">
+  </head>
+  <body data-base-path="{{ base_path }}" data-profile-id="{{ workspace.profile_id }}" data-initial-view="{{ initial_view }}" data-read-only="{{ 'true' if read_only else 'false' }}">
+    {% if read_only %}<p role="status">Read-only snapshot. Changes cannot be saved.</p>{% endif %}
+    <a class="skip-link"
+       href="{% if initial_view == 'words' %}#words-search{% elif initial_view == 'characters' %}#characters-search{% elif initial_view == 'grammar' %}#grammar-search{% elif initial_view == 'texts' %}#texts-heading{% elif initial_view == 'statistics' %}#statistics-heading{% elif initial_view == 'settings' %}#theme-settings{% else %}#lesson-content{% endif %}">
+      Skip to {% if initial_view == 'words' %}words{% elif initial_view == 'characters' %}characters{% elif initial_view == 'grammar' %}grammar{% elif initial_view == 'texts' %}texts{% elif initial_view == 'statistics' %}statistics{% elif initial_view == 'settings' %}settings{% else %}the lesson{% endif %}
+    </a>
+
+    <header class="app-header">
+      <a class="brand" href="{{ base_path }}/p/{{ workspace.profile_id }}" aria-label="Lang Reader home">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>Lang Reader</span>
+      </a>
+      <label class="profile-switch">
+        <span class="sr-only">Learning profile</span>
+        <select id="profile-switch" aria-label="Learning profile">
+          {% for option in profile_options %}
+          <option value="{{ option.profile_id }}"
+                  aria-label="{{ option.accessible_label }}"
+                  {% if option.profile_id == workspace.profile_id %}selected{% endif %}>
+            {{ option.marker.symbol }} {{ option.visible_label }}
+          </option>
+          {% endfor %}
+        </select>
+      </label>
+    </header>
+
+    <div class="app-shell">
+      <aside class="app-rail">
+        <nav class="rail-nav" aria-label="Primary navigation">
+          <p class="rail-heading">Library</p>
+          <a class="rail-item{% if initial_view == 'reading' %} rail-item-active{% endif %}"
+             href="{{ base_path }}/p/{{ workspace.profile_id }}"
+             {% if initial_view == 'reading' %}aria-current="page"{% endif %}
+             aria-label="Reading">
+            <span class="rail-icon" aria-hidden="true">R</span>
+            <span class="rail-label">Reading</span>
+          </a>
+          <a class="rail-item{% if initial_view == 'texts' %} rail-item-active{% endif %}"
+             href="{{ base_path }}/p/{{ workspace.profile_id }}?view=texts"
+             {% if initial_view == 'texts' %}aria-current="page"{% endif %}
+             aria-label="Texts">
+            <span class="rail-icon" aria-hidden="true">T</span>
+            <span class="rail-label">Texts</span>
+          </a>
+          <a class="rail-item{% if initial_view == 'words' %} rail-item-active{% endif %}"
+             href="{{ base_path }}/p/{{ workspace.profile_id }}?view=words"
+             {% if initial_view == 'words' %}aria-current="page"{% endif %}
+             aria-label="Words">
+            <span class="rail-icon" aria-hidden="true">W</span>
+            <span class="rail-label">Words</span>
+          </a>
+          {% if show_characters %}
+          <a class="rail-item{% if initial_view == 'characters' %} rail-item-active{% endif %}"
+             href="{{ base_path }}/p/{{ workspace.profile_id }}?view=characters"
+             {% if initial_view == 'characters' %}aria-current="page"{% endif %}
+             aria-label="Characters">
+            <span class="rail-icon" aria-hidden="true">字</span>
+            <span class="rail-label">Characters</span>
+          </a>
+          {% endif %}
+          <a class="rail-item{% if initial_view == 'grammar' %} rail-item-active{% endif %}"
+             href="{{ base_path }}/p/{{ workspace.profile_id }}?view=grammar"
+             {% if initial_view == 'grammar' %}aria-current="page"{% endif %}
+             aria-label="Grammar">
+            <span class="rail-icon" aria-hidden="true">G</span>
+            <span class="rail-label">Grammar</span>
+          </a>
+          <button class="rail-item" type="button" aria-label="Review, coming soon" disabled>
+            <span class="rail-icon" aria-hidden="true">↻</span>
+            <span class="rail-label">Review</span>
+            <span class="rail-status">Soon</span>
+          </button>
+          <a class="rail-item{% if initial_view == 'statistics' %} rail-item-active{% endif %}"
+             href="{{ base_path }}/p/{{ workspace.profile_id }}?view=statistics"
+             {% if initial_view == 'statistics' %}aria-current="page"{% endif %}
+             aria-label="Statistics">
+            <span class="rail-icon" aria-hidden="true">▥</span>
+            <span class="rail-label">Statistics</span>
+          </a>
+          <a class="rail-item{% if initial_view == 'settings' %} rail-item-active{% endif %}"
+             href="{{ base_path }}/p/{{ workspace.profile_id }}?view=settings"
+             {% if initial_view == 'settings' %}aria-current="page"{% endif %}
+             aria-label="Settings">
+            <span class="rail-icon" aria-hidden="true">⚙</span>
+            <span class="rail-label">Settings</span>
+          </a>
+        </nav>
+
+        <div class="rail-guide" aria-label="Underline guide">
+          <p class="rail-heading">Reading cues</p>
+          <span class="rail-guide-item rail-guide-familiar">Familiar</span>
+          <span class="rail-guide-item rail-guide-expected">Expected</span>
+          <span class="rail-guide-item rail-guide-uncertain">Maybe</span>
+          <span class="rail-guide-item rail-guide-focus"
+                title="Selected for learning now">Focus</span>
+          <span class="rail-guide-item rail-guide-incidental"
+                title="Above your level; present only for the text">Context only</span>
+        </div>
+
+        <div class="rail-tools">
+          <button id="tone-color-toggle" class="rail-item rail-tone-toggle" type="button"
+                  aria-pressed="false" aria-label="Color Chinese characters by tone" hidden>
+            <span class="rail-icon tone-color-icon" aria-hidden="true">声</span>
+            <span class="rail-label">Hanzi tones</span>
+            <span id="tone-color-state" class="tone-color-state">Off</span>
+          </button>
+        </div>
+      </aside>
+
+      <main id="app" class="app-main">
+      <section id="loading-view" class="state-card" aria-live="polite">
+        <div class="loading-mark" aria-hidden="true"></div>
+        <p id="loading-message">Preparing your next lesson…</p>
+      </section>
+
+      <section id="error-view" class="state-card" hidden>
+        <p class="eyebrow">Reader unavailable</p>
+        <h1>We couldn’t open the lesson.</h1>
+        <p id="error-message" class="state-detail"></p>
+        <button id="retry-button" class="button button-primary" type="button">Try again</button>
+      </section>
+
+      <section id="activation-view" class="activation-view" hidden>
+        <header class="activation-header">
+          <p class="eyebrow">New language</p>
+          <h1>Start learning</h1>
+          <p>
+            Nothing is generated until you start this language. The optional questions give the
+            reader a useful starting point; reading evidence will refine it.
+          </p>
+        </header>
+        <form id="activation-form" class="activation-form">
+          <fieldset class="activation-section">
+            <legend>
+              Where should the reader begin? <span class="activation-optional">Optional</span>
+            </legend>
+            <p>Choose by reading comfort. This is only a starting estimate, not a final level.</p>
+            <div class="starting-point-grid">
+              <label class="starting-point-option">
+                <input type="radio" name="starting-point" value="unsure" checked>
+                <span><strong>Not sure</strong><small>Start broad and work it out from reading.</small></span>
+              </label>
+              <label class="starting-point-option">
+                <input type="radio" name="starting-point" value="complete_beginner">
+                <span><strong>Complete beginner</strong><small>I am starting from zero.</small></span>
+              </label>
+              <label class="starting-point-option">
+                <input type="radio" name="starting-point" value="basic_phrases">
+                <span><strong>Basic words</strong><small>I recognize the script or simple phrases.</small></span>
+              </label>
+              <label class="starting-point-option">
+                <input type="radio" name="starting-point" value="simple_texts">
+                <span><strong>Simple texts</strong><small>I can read short everyday messages.</small></span>
+              </label>
+              <label class="starting-point-option">
+                <input type="radio" name="starting-point" value="general_reading">
+                <span><strong>General reading</strong><small>I can follow simple stories and articles.</small></span>
+              </label>
+              <label class="starting-point-option">
+                <input type="radio" name="starting-point" value="complex_texts">
+                <span><strong>Complex texts</strong><small>I read ordinary articles or fiction with gaps.</small></span>
+              </label>
+              <label class="starting-point-option">
+                <input type="radio" name="starting-point" value="advanced_reading">
+                <span><strong>Advanced reading</strong><small>I handle dense or specialized writing.</small></span>
+              </label>
+              <label class="starting-point-option">
+                <input type="radio" name="starting-point" value="near_native">
+                <span><strong>Near-professional</strong><small>I read nuanced or literary work comfortably.</small></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="activation-fields">
+            <label>
+              <span>How sure are you?</span>
+              <select id="activation-confidence" name="confidence">
+                <option value="low">Not very sure</option>
+                <option value="medium" selected>Fairly sure</option>
+                <option value="high">Very sure</option>
+              </select>
+            </label>
+            <label>
+              <span>Interests <small class="activation-field-hint">Optional, comma-separated</small></span>
+              <input id="activation-interests" type="text" maxlength="500"
+                     placeholder="History, science fiction, everyday life">
+            </label>
+            <label>
+              <span>Preferred text length <small class="activation-field-hint">Optional</small></span>
+              <select id="activation-text-length">
+                <option value="">Use the default</option>
+                <option value="160">Short</option>
+                <option value="300">Medium</option>
+                <option value="500">Long</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="activation-action">
+            <p id="activation-status" role="status" aria-live="polite"></p>
+            <button id="activation-submit" class="button button-primary" type="submit">
+              Start this language
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section id="reader-view" class="reader" hidden>
+        <aside id="reader-mode-banner" class="reader-mode-banner" hidden>
+          <div>
+            <strong id="reader-mode-title"></strong>
+            <span id="reader-mode-detail"></span>
+          </div>
+          <a class="reader-mode-back" href="{{ base_path }}/p/{{ workspace.profile_id }}?view=texts">
+            Back to texts
+          </a>
+        </aside>
+
+        <header class="lesson-header">
+          <div class="lesson-heading">
+            <h1 id="lesson-title" tabindex="-1"></h1>
+          </div>
+          <div class="lesson-actions">
+            <div class="lesson-audio-control">
+              <button id="lesson-audio-button" class="button button-quiet" type="button"
+                      aria-label="Listen to this text" disabled>
+                <span id="lesson-audio-button-icon" aria-hidden="true">▶</span>
+                <span id="lesson-audio-button-label">Listen</span>
+              </button>
+              <label class="lesson-audio-speed">
+                <span class="sr-only">Reading speed</span>
+                <select id="lesson-audio-speed" aria-label="Reading speed">
+                  <option value="0.5">0.5×</option>
+                  <option value="0.75">0.75×</option>
+                  <option value="1" selected>1×</option>
+                  <option value="1.25">1.25×</option>
+                  <option value="1.5">1.5×</option>
+                  <option value="1.75">1.75×</option>
+                  <option value="2">2×</option>
+                </select>
+              </label>
+              <audio id="lesson-audio" preload="metadata"></audio>
+            </div>
+            <button id="full-translation-button" class="button button-quiet" type="button">
+              Show full translation
+            </button>
+            <button id="skip-lesson-button" class="button button-quiet lesson-skip-button"
+                    type="button" hidden>
+              Skip for now
+            </button>
+          </div>
+        </header>
+        <p id="lesson-audio-status" class="lesson-audio-status" role="status"
+           aria-live="polite"></p>
+
+        <article id="lesson-content" class="lesson-content" tabindex="-1"></article>
+
+        <aside class="lesson-details" aria-labelledby="lesson-details-heading">
+          <p id="lesson-details-heading" class="lesson-details-heading">Text details</p>
+          <dl>
+            <div>
+              <dt>Level estimate</dt>
+              <dd id="lesson-level-detail"></dd>
+            </div>
+            <div>
+              <dt>Adaptive difficulty</dt>
+              <dd id="lesson-difficulty-detail"></dd>
+            </div>
+            <div id="lesson-topic-detail-item">
+              <dt>Topic</dt>
+              <dd id="lesson-topic-detail" dir="auto"></dd>
+            </div>
+          </dl>
+        </aside>
+
+        <section id="full-translation" class="full-translation" hidden>
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Full translation</p>
+            </div>
+            <button id="close-translation-button" class="icon-button" type="button"
+                    aria-label="Hide full translation">×</button>
+          </div>
+          <div id="full-translation-content" class="translation-copy"></div>
+        </section>
+
+        <footer id="completion-card" class="completion-card">
+          <div class="completion-copy">
+            <p class="eyebrow">Finish this lesson</p>
+            <h2>Was this a good lesson?</h2>
+            <p>Optional — your answer helps shape the next text.</p>
+            <p id="content-experiment" class="content-experiment" hidden>
+              <strong id="content-experiment-kind"></strong>
+              <span id="content-experiment-text" dir="auto"></span>
+            </p>
+          </div>
+          <fieldset class="rating-fieldset">
+            <legend class="sr-only">Rate whether this was a good lesson</legend>
+            <div id="rating-options" class="rating-options"></div>
+          </fieldset>
+          <details id="expert-feedback" class="expert-feedback">
+            <summary>
+              Fine-tune the next lesson
+              <span>Optional</span>
+            </summary>
+            <fieldset class="feedback-fieldset">
+              <legend class="sr-only">Optional lesson feedback</legend>
+              <div class="feedback-options">
+                <label class="feedback-tag">
+                  <input type="checkbox" name="lesson-feedback" value="shorter">
+                  <span>Shorter</span>
+                </label>
+                <label class="feedback-tag">
+                  <input type="checkbox" name="lesson-feedback" value="longer">
+                  <span>Longer</span>
+                </label>
+                <label class="feedback-tag">
+                  <input type="checkbox" name="lesson-feedback" value="easier">
+                  <span>Easier</span>
+                </label>
+                <label class="feedback-tag">
+                  <input type="checkbox" name="lesson-feedback" value="more_challenging">
+                  <span>More challenging</span>
+                </label>
+                <label class="feedback-tag">
+                  <input type="checkbox" name="lesson-feedback" value="more_grammar">
+                  <span>More grammar</span>
+                </label>
+                <label class="feedback-tag">
+                  <input type="checkbox" name="lesson-feedback" value="less_grammar">
+                  <span>Less grammar</span>
+                </label>
+                <label class="feedback-tag">
+                  <input type="checkbox" name="lesson-feedback" value="same_topic">
+                  <span>Stay on this topic</span>
+                </label>
+                <label class="feedback-tag">
+                  <input type="checkbox" name="lesson-feedback" value="new_topic">
+                  <span>New topic</span>
+                </label>
+              </div>
+            </fieldset>
+          </details>
+          <div class="completion-action">
+            <div class="active-time-control">
+              <span id="active-time" class="active-time">Active reading · 0:00</span>
+              <button id="reset-active-time" class="active-time-reset" type="button"
+                      aria-label="Reset active reading time" title="Reset active reading time">↺</button>
+            </div>
+            <div class="completion-buttons">
+              <button id="skip-lesson-completion-button"
+                      class="button button-quiet lesson-skip-button" type="button" hidden>
+                Skip for now
+              </button>
+              <button id="complete-button" class="button button-primary" type="button" disabled>
+                Finish &amp; next
+              </button>
+            </div>
+          </div>
+        </footer>
+      </section>
+
+      <section id="texts-view" class="texts-view" hidden>
+        <header class="texts-header">
+          <p class="eyebrow">Reading library</p>
+          <h1 id="texts-heading">Texts</h1>
+          <p class="texts-intro">
+            Choose what to read next, continue a text already underway, or revisit an old one.
+            Peek opens every reading aid without recording learning evidence.
+          </p>
+          <div id="texts-summary" class="texts-summary" aria-live="polite"></div>
+        </header>
+
+        <section class="topic-request-card" aria-labelledby="topic-request-heading">
+          <div class="topic-request-copy">
+            <p class="eyebrow">Guide the next text</p>
+            <h2 id="topic-request-heading">Request a topic</h2>
+            <p>
+              Give the learning agent a subject or scenario. Your level and word evidence still
+              determine the language it uses.
+            </p>
+          </div>
+          <form id="topic-request-form" class="topic-request-form">
+            <label for="topic-request-input">Topic or scenario</label>
+            <div class="topic-request-entry">
+              <input id="topic-request-input" name="topic" type="text" minlength="1"
+                     maxlength="200" placeholder="For example: an overnight train journey"
+                     autocomplete="off" required>
+              <button id="topic-request-submit" class="button button-primary" type="submit">
+                Request text
+              </button>
+            </div>
+            <p id="topic-request-status" class="topic-request-status" role="status"
+               aria-live="polite"></p>
+          </form>
+          <div id="topic-request-list" class="topic-request-list"></div>
+        </section>
+
+        <div id="texts-groups" class="texts-groups">
+          <section id="texts-preparing-group" class="texts-group texts-preparing-group"
+                   aria-labelledby="texts-preparing-heading" hidden>
+            <div class="texts-group-heading">
+              <h2 id="texts-preparing-heading">Being prepared</h2>
+              <span id="texts-preparing-count" class="texts-group-count"></span>
+            </div>
+            <div id="texts-preparing-list" class="text-card-list"
+                 aria-live="polite"></div>
+          </section>
+
+          <section class="texts-group" aria-labelledby="texts-progress-heading">
+            <div class="texts-group-heading">
+              <h2 id="texts-progress-heading">In progress</h2>
+              <span id="texts-progress-count" class="texts-group-count"></span>
+            </div>
+            <div id="texts-progress-list" class="text-card-list"></div>
+          </section>
+
+          <section class="texts-group" aria-labelledby="texts-queued-heading">
+            <div class="texts-group-heading">
+              <h2 id="texts-queued-heading">Ready to read</h2>
+              <span id="texts-queued-count" class="texts-group-count"></span>
+            </div>
+            <div id="texts-queued-list" class="text-card-list"></div>
+          </section>
+
+          <section class="texts-group texts-group-skipped"
+                   aria-labelledby="texts-skipped-heading">
+            <div class="texts-group-heading">
+              <h2 id="texts-skipped-heading">Skipped</h2>
+              <span id="texts-skipped-count" class="texts-group-count"></span>
+            </div>
+            <div id="texts-skipped-list" class="text-card-list"></div>
+          </section>
+
+          <section class="texts-group" aria-labelledby="texts-read-heading">
+            <div class="texts-group-heading">
+              <h2 id="texts-read-heading">Read</h2>
+              <span id="texts-read-count" class="texts-group-count"></span>
+            </div>
+            <div id="texts-read-list" class="text-card-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="words-view" class="words-view" hidden>
+        <header class="words-header">
+          <p class="eyebrow">Vocabulary evidence</p>
+          <h1>Words you’ve met</h1>
+          <p class="words-intro">
+            One row represents a stable lemma, word class, and meaning. Surface forms stay
+            together; other meanings found in opened texts are linked without mixing their stats.
+          </p>
+          <div id="words-summary" class="words-summary" aria-live="polite"></div>
+        </header>
+
+        <div class="words-controls">
+          <label class="words-search-label">
+            <span class="sr-only">Search exposed words</span>
+            <input id="words-search" type="search"
+                   placeholder="Search word, meaning, class, form, or pinyin…"
+                   autocomplete="off">
+          </label>
+          <label class="words-sort-label">
+            <span>Sort</span>
+            <select id="words-sort">
+              <option value="attention:descending">Needs attention</option>
+              <option value="alphabetical:ascending">Word: A–Z</option>
+              <option value="alphabetical:descending">Word: Z–A</option>
+              <option value="meaning:ascending">Meaning: A–Z</option>
+              <option value="meaning:descending">Meaning: Z–A</option>
+              <option value="encounters:descending">Met: Most first</option>
+              <option value="encounters:ascending">Met: Fewest first</option>
+              <option value="clicks:descending">Clicks: Most first</option>
+              <option value="clicks:ascending">Clicks: Fewest first</option>
+              <option value="clean:descending">Clean reads: Most first</option>
+              <option value="clean:ascending">Clean reads: Fewest first</option>
+              <option value="mastery:ascending">Mastery: Lowest first</option>
+              <option value="mastery:descending">Mastery: Highest first</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="words-table-wrap">
+          <table class="words-table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-word-sort="alphabetical" data-sort-label="Word">
+                    <span>Word</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-word-sort="meaning" data-sort-label="Meaning">
+                    <span>Meaning</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-word-sort="encounters" data-sort-label="Met">
+                    <span>Met</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-word-sort="clicks" data-sort-label="Clicks">
+                    <span>Clicks</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-word-sort="clean" data-sort-label="Clean reads">
+                    <span>Clean reads</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-word-sort="mastery" data-sort-label="Mastery">
+                    <span>Mastery</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="words-table-body"></tbody>
+          </table>
+          <p id="words-empty" class="words-empty" hidden>No exposed words match this search.</p>
+        </div>
+      </section>
+
+      <section id="characters-view" class="characters-view" hidden>
+        <header class="characters-header">
+          <p class="eyebrow">Character evidence</p>
+          <h1>Characters you’ve met</h1>
+          <p class="characters-intro">
+            Recognition is inferred gradually from reading evidence: clean completed readings
+            build confidence, while checked words provide limited evidence about which characters
+            caused difficulty. Character recognition stays separate from word knowledge—a
+            familiar character does not make every word containing it known.
+          </p>
+          <div id="characters-summary" class="characters-summary" aria-live="polite"></div>
+        </header>
+
+        <div class="characters-controls">
+          <label class="characters-search-label">
+            <span class="sr-only">Search characters literally</span>
+            <input id="characters-search" type="search" placeholder="Search character…"
+                   autocomplete="off">
+          </label>
+          <label class="characters-sort-label">
+            <span>Sort</span>
+            <select id="characters-sort">
+              <option value="attention:descending">Needs attention</option>
+              <option value="alphabetical:ascending">Character: A–Z</option>
+              <option value="alphabetical:descending">Character: Z–A</option>
+              <option value="encounters:descending">Met: Most first</option>
+              <option value="encounters:ascending">Met: Fewest first</option>
+              <option value="contexts:descending">Contexts: Most first</option>
+              <option value="contexts:ascending">Contexts: Fewest first</option>
+              <option value="checks:descending">Checks: Most first</option>
+              <option value="checks:ascending">Checks: Fewest first</option>
+              <option value="clean:descending">Clean reads: Most first</option>
+              <option value="clean:ascending">Clean reads: Fewest first</option>
+              <option value="mastery:ascending">Mastery: Lowest first</option>
+              <option value="mastery:descending">Mastery: Highest first</option>
+              <option value="recent:descending">Evidence: Most recent</option>
+              <option value="recent:ascending">Evidence: Earliest</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="words-table-wrap characters-table-wrap">
+          <table class="words-table characters-table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-character-sort="alphabetical" data-sort-label="Character">
+                    <span>Character</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-character-sort="encounters" data-sort-label="Met">
+                    <span>Met</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-character-sort="contexts" data-sort-label="Contexts">
+                    <span>Contexts</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-character-sort="checks" data-sort-label="Checks">
+                    <span>Checks</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-character-sort="clean" data-sort-label="Evidence">
+                    <span>Evidence</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">
+                  <button class="words-column-sort" type="button"
+                          data-character-sort="mastery" data-sort-label="Recognition">
+                    <span>Recognition</span>
+                    <span class="words-sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="characters-table-body"></tbody>
+          </table>
+          <p id="characters-empty" class="words-empty" hidden>
+            No exposed characters match this search.
+          </p>
+        </div>
+      </section>
+
+      <section id="grammar-view" class="grammar-view" hidden>
+        <header class="grammar-header">
+          <p class="eyebrow">Grammar evidence</p>
+          <h1>Grammar you’ve met</h1>
+          <p class="grammar-intro">
+            Constructions appear here after you open a text containing them. Sentence help can
+            suggest where the difficulty was; clean completed readings build confidence gradually.
+          </p>
+          <div id="grammar-summary" class="grammar-summary" aria-live="polite"></div>
+        </header>
+
+        <div class="grammar-controls">
+          <label class="grammar-search-label">
+            <span class="sr-only">Search exposed grammar</span>
+            <input id="grammar-search" type="search"
+                   placeholder="Search construction, category, explanation, or example…"
+                   autocomplete="off">
+          </label>
+          <label class="grammar-sort-label">
+            <span>Sort</span>
+            <select id="grammar-sort">
+              <option value="attention">Needs attention</option>
+              <option value="alphabetical">Name: A–Z</option>
+              <option value="encounters">Met: Most first</option>
+              <option value="clean">Clean reads: Most first</option>
+              <option value="mastery">Mastery: Lowest first</option>
+              <option value="category">Category</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="grammar-card-list" class="grammar-card-list"></div>
+        <p id="grammar-empty" class="grammar-empty" hidden>
+          No exposed grammar constructions match this search.
+        </p>
+      </section>
+
+      <section id="statistics-view" class="statistics-view" hidden>
+        <header class="statistics-header">
+          <p class="eyebrow">Learning record</p>
+          <h1 id="statistics-heading">Statistics</h1>
+          <p class="statistics-intro">
+            A profile-specific snapshot from your recorded reading sessions. Previewing a text
+            never changes these figures.
+          </p>
+        </header>
+
+        <div class="statistics-grid">
+          <article class="statistics-card statistics-words-card">
+            <header class="statistics-card-heading">
+              <div>
+                <p class="eyebrow">Vocabulary</p>
+                <h2>Word knowledge</h2>
+              </div>
+              <p class="statistics-primary">
+                <strong id="statistics-word-total">0</strong>
+                <span>words met</span>
+              </p>
+            </header>
+            <div id="statistics-knowledge-bar" class="statistics-knowledge-bar"
+                 role="img" aria-label="No word knowledge evidence yet"></div>
+            <ul id="statistics-knowledge-legend" class="statistics-knowledge-legend"></ul>
+            <p id="statistics-words-empty" class="statistics-empty" hidden>
+              Words appear here after you open a text. Productive phrases and exact aliases do not
+              inflate the total.
+            </p>
+          </article>
+
+          <article class="statistics-card statistics-reading-card">
+            <header class="statistics-card-heading">
+              <div>
+                <p class="eyebrow">Reading</p>
+                <h2>Time and pace</h2>
+              </div>
+            </header>
+            <dl class="statistics-metrics">
+              <div>
+                <dt>Texts read</dt>
+                <dd id="statistics-texts-read" class="statistics-metric-value">0</dd>
+                <dd id="statistics-reading-sessions" class="statistics-metric-detail">
+                  No completed sessions
+                </dd>
+              </div>
+              <div>
+                <dt>Active time</dt>
+                <dd id="statistics-active-time" class="statistics-metric-value">0s</dd>
+                <dd class="statistics-metric-detail">Completed text timers</dd>
+              </div>
+              <div>
+                <dt>Recent pace</dt>
+                <dd class="statistics-metric-value">
+                  <span id="statistics-recent-wpm">—</span>
+                  <small>wpm</small>
+                </dd>
+                <dd id="statistics-recent-wpm-detail" class="statistics-metric-detail">
+                  No measured reads yet
+                </dd>
+              </div>
+              <div>
+                <dt>Lifetime pace</dt>
+                <dd class="statistics-metric-value">
+                  <span id="statistics-lifetime-wpm">—</span>
+                  <small>wpm</small>
+                </dd>
+                <dd id="statistics-lifetime-wpm-detail" class="statistics-metric-detail">
+                  No measured reads yet
+                </dd>
+              </div>
+            </dl>
+            <p id="statistics-reading-note" class="statistics-note"></p>
+          </article>
+
+          <article class="statistics-card statistics-level-card">
+            <header class="statistics-card-heading">
+              <div>
+                <p class="eyebrow">Placement</p>
+                <h2>Reading level</h2>
+              </div>
+            </header>
+            <div class="statistics-level-layout">
+              <section class="statistics-level-current" aria-labelledby="statistics-level-current">
+                <p id="statistics-level-current" class="statistics-section-label">
+                  Current estimate
+                </p>
+                <p id="statistics-level-category" class="statistics-level-category">—</p>
+                <p id="statistics-level-value" class="statistics-level-value">0.00 / 1.00</p>
+                <div id="statistics-level-meter" class="statistics-level-meter"
+                     role="progressbar" aria-label="Current reading level"
+                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <span id="statistics-level-meter-fill"></span>
+                </div>
+                <p id="statistics-level-source" class="statistics-level-detail"></p>
+              </section>
+              <section class="statistics-level-confidence"
+                       aria-labelledby="statistics-level-confidence-heading">
+                <p id="statistics-level-confidence-heading" class="statistics-section-label">
+                  Calibration confidence
+                </p>
+                <p id="statistics-level-status" class="statistics-level-status">
+                  No calibration reads yet
+                </p>
+                <p id="statistics-level-range" class="statistics-level-detail"></p>
+                <p id="statistics-level-evidence" class="statistics-level-detail"></p>
+              </section>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="settings-view" class="settings-view" hidden>
+        <header class="settings-header">
+          <p class="eyebrow">Preferences</p>
+          <h1>Settings</h1>
+          <p>
+            Appearance stays in this browser. Language-specific choices are saved with the
+            selected learning profile.
+          </p>
+        </header>
+
+        <section id="theme-settings" class="settings-card" aria-labelledby="theme-heading">
+          <div>
+            <p class="eyebrow">Appearance</p>
+            <h2 id="theme-heading">Color theme</h2>
+            <p>Choose the palette used by the reader, vocabulary list, and learning controls.</p>
+          </div>
+          <fieldset class="theme-options">
+            <legend class="sr-only">Color theme</legend>
+            <label class="theme-option">
+              <input type="radio" name="color-theme" value="light">
+              <span class="theme-preview theme-preview-light" aria-hidden="true"></span>
+              <span>
+                <strong>Light</strong>
+                <small>Warm paper and dark text</small>
+              </span>
+            </label>
+            <label class="theme-option">
+              <input type="radio" name="color-theme" value="dark">
+              <span class="theme-preview theme-preview-dark" aria-hidden="true"></span>
+              <span>
+                <strong>Dark</strong>
+                <small>Low-glare charcoal and soft text</small>
+              </span>
+            </label>
+          </fieldset>
+          <p id="theme-status" class="settings-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="speech-settings" class="settings-card" aria-labelledby="speech-heading">
+          <div>
+            <p class="eyebrow">Listening</p>
+            <h2 id="speech-heading">Reading voice</h2>
+            <p>
+              Pick one voice for this language profile. New texts are prepared with it in the
+              background; changing it also prepares the existing library again.
+            </p>
+          </div>
+          <label class="tts-voice-field" for="tts-voice-select">
+            <span>Voice for this language</span>
+            <select id="tts-voice-select" disabled>
+              <option>Loading voices…</option>
+            </select>
+          </label>
+          <div class="tts-settings-copy">
+            <p id="tts-language-note"></p>
+            <p class="tts-privacy-note">
+              Until local audio is ready, Listen can use a browser or operating-system voice.
+              Some system voices may contact their provider.
+            </p>
+          </div>
+          <p id="tts-settings-status" class="settings-status" role="status"
+             aria-live="polite"></p>
+        </section>
+
+        <section id="reading-preferences" class="settings-card"
+                 aria-labelledby="preferences-heading">
+          <div>
+            <p class="eyebrow">Content</p>
+            <h2 id="preferences-heading">Reading preferences</h2>
+            <p>
+              What new texts are about. The agent keeps these notes current from your ratings,
+              skips and messages below; you can also edit them directly.
+            </p>
+          </div>
+          <label class="preferences-field" for="preferences-text">
+            <span>Preference notes</span>
+            <textarea id="preferences-text" rows="10" maxlength="4000" disabled></textarea>
+          </label>
+          <div class="preferences-actions">
+            <span id="preferences-meta" class="preferences-meta"></span>
+            <button id="preferences-save" class="button button-quiet" type="button" disabled>
+              Save notes
+            </button>
+          </div>
+          <label class="preferences-field" for="preferences-message">
+            <span>Tell the agent about your preferences</span>
+            <textarea id="preferences-message" rows="2" maxlength="1000"
+                      placeholder="e.g. more history of science, fewer cooking stories"></textarea>
+          </label>
+          <div class="preferences-actions">
+            <span id="preferences-pending" class="preferences-meta"></span>
+            <button id="preferences-send" class="button button-primary" type="button">
+              Send
+            </button>
+          </div>
+          <p id="preferences-status" class="settings-status" role="status"
+             aria-live="polite"></p>
+        </section>
+      </section>
+      </main>
+    </div>
+
+    <button id="sentence-help-mode" class="sentence-help-mode" type="button"
+            aria-pressed="false" aria-label="Choose a sentence to translate" hidden>
+      <span class="sentence-help-mode-icon" aria-hidden="true">A·文</span>
+      <span id="sentence-help-mode-label">Sentence</span>
+    </button>
+
+    <aside id="gloss-popover" class="gloss-popover" role="dialog"
+           aria-label="Word translation" hidden>
+      <button id="gloss-close" class="gloss-close" type="button"
+              aria-label="Close word translation">×</button>
+      <p id="gloss-lemma" class="gloss-lemma"></p>
+      <p id="gloss-pronunciation" class="gloss-pronunciation" hidden></p>
+      <p id="gloss-pos" class="gloss-pos"></p>
+      <p id="gloss-text" class="gloss-text"></p>
+    </aside>
+
+    <aside id="sentence-translation-popover" class="sentence-popover" role="dialog"
+           aria-label="Sentence translation" hidden>
+      <button id="sentence-translation-close" class="gloss-close" type="button"
+              aria-label="Close sentence translation">×</button>
+      <p class="eyebrow">Sentence translation</p>
+      <p id="sentence-source-text" class="sentence-popover-source" dir="auto"></p>
+      <p id="sentence-translation-text" class="sentence-popover-text" dir="auto"></p>
+    </aside>
+
+    <aside id="grammar-popover" class="grammar-popover" role="dialog"
+           aria-label="Grammar in this sentence" hidden>
+      <button id="grammar-popover-close" class="gloss-close" type="button"
+              aria-label="Close grammar help">×</button>
+      <p class="eyebrow">Grammar in this sentence</p>
+      <div id="grammar-popover-content" class="grammar-popover-content"></div>
+    </aside>
+
+    <div id="action-status-message" class="action-status-message" role="status"
+         aria-live="polite" aria-atomic="true" hidden></div>
+    <div id="status-message" class="status-message" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="{{ base_path }}/assets/app.js"></script>
+  </body>
+</html>

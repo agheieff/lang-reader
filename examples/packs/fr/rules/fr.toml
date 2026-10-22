@@ -1,0 +1,22 @@
+schema_version = 1
+id = "fr"
+tags = ["fr"]
+description = "French lemma conventions."
+generation_guidance = [
+  "Use the infinitive as the lemma of a verb and the masculine singular as the lemma of an adjective, keeping the observed form in run.text.",
+  "Treat elided forms such as l' and j' as function words whose lemmas are le and je.",
+]
+
+[pos_aliases]
+v = "verb"
+verbe = "verb"
+n = "noun"
+nom = "noun"
+adj = "adjective"
+adjectif = "adjective"
+
+[[lemma_conventions]]
+id = "verb-infinitive"
+pos = ["verb"]
+guidance = "French verb lemmas use the dictionary infinitive."
+severity = "guidance"
